@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# No admin, no private routes — everything here is public.
+Sitemap: https://0xjave-dot.github.io/portfolio/sitemap.xml
