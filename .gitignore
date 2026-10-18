@@ -17,4 +17,3 @@ coverage
 .idea
 .vscode/*
 !.vscode/extensions.json
-recon
