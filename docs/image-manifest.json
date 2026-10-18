@@ -1,0 +1,110 @@
+{
+  "zanori": {
+    "slug": "zanori",
+    "images": {
+      "hero": {
+        "width": 1440,
+        "height": 900,
+        "bytes": 68952
+      },
+      "full": {
+        "width": 1200,
+        "height": 5873,
+        "bytes": 331724
+      },
+      "mobile": {
+        "width": 780,
+        "height": 1688,
+        "bytes": 66374
+      }
+    },
+    "probe": {
+      "surface": "#3a2d28",
+      "accent": "#9e1b32",
+      "page": "#2a1c17",
+      "ink": "#4b3e39",
+      "_src": "1440x900"
+    }
+  },
+  "apreeltree": {
+    "slug": "apreeltree",
+    "images": {
+      "hero": {
+        "width": 1440,
+        "height": 900,
+        "bytes": 59424
+      },
+      "full": {
+        "width": 1200,
+        "height": 3736,
+        "bytes": 227846
+      },
+      "mobile": {
+        "width": 780,
+        "height": 1688,
+        "bytes": 68118
+      }
+    },
+    "probe": {
+      "surface": "#d49369",
+      "accent": "#c6ceca",
+      "page": "#f5efe0",
+      "ink": "#e3e0d1",
+      "_src": "1440x900"
+    }
+  },
+  "fitables": {
+    "slug": "fitables",
+    "images": {
+      "hero": {
+        "width": 1440,
+        "height": 900,
+        "bytes": 44618
+      },
+      "full": {
+        "width": 1200,
+        "height": 5539,
+        "bytes": 286574
+      },
+      "mobile": {
+        "width": 780,
+        "height": 1688,
+        "bytes": 67492
+      }
+    },
+    "probe": {
+      "surface": "#f9f6f2",
+      "accent": "#6a8579",
+      "page": "#f8f5f0",
+      "ink": "#f9f6f2",
+      "_src": "1440x900"
+    }
+  },
+  "dudja": {
+    "slug": "dudja",
+    "images": {
+      "hero": {
+        "width": 1440,
+        "height": 900,
+        "bytes": 52078
+      },
+      "full": {
+        "width": 1200,
+        "height": 3628,
+        "bytes": 148046
+      },
+      "mobile": {
+        "width": 780,
+        "height": 1688,
+        "bytes": 74044
+      }
+    },
+    "probe": {
+      "surface": "#141a1f",
+      "accent": "#c87262",
+      "page": "#0b0c0c",
+      "ink": "#111114",
+      "_src": "1440x900"
+    }
+  }
+}
