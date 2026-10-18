@@ -31,6 +31,9 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.6,
+      // Lenis defaults this to false; without it nothing drives the interpolation
+      // loop and both wheel scrolling and animated scrollTo() silently do nothing.
+      autoRaf: true,
     });
 
     setLenis(instance);
@@ -43,22 +46,38 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
   const scrollTo = useCallback(
     (target: string | number | HTMLElement, options?: { offset?: number; immediate?: boolean }) => {
       const offset = options?.offset ?? 0;
-      if (lenis) {
-        lenis.scrollTo(target, { offset, immediate: options?.immediate, duration: 1.2 });
+
+      const run = () => {
+        if (lenis) {
+          lenis.scrollTo(target, { offset, immediate: options?.immediate, duration: 1.2 });
+          return;
+        }
+        if (typeof target === 'string') {
+          document.querySelector<HTMLElement>(target)?.scrollIntoView({
+            behavior: options?.immediate ? 'auto' : 'smooth',
+            block: 'start',
+          });
+          return;
+        }
+        if (typeof target === 'number') {
+          window.scrollTo({ top: target + offset, behavior: options?.immediate ? 'auto' : 'smooth' });
+          return;
+        }
+        target.scrollIntoView({ behavior: options?.immediate ? 'auto' : 'smooth', block: 'start' });
+      };
+
+      if (typeof target === 'string' && target.startsWith('#')) {
+        // Sections below the fold mount lazily. Ask for this one first, scroll
+        // straight away, then re-aim once it has committed — its real height is
+        // usually taller than the placeholder, which would otherwise leave the
+        // viewport short of the section.
+        window.dispatchEvent(new CustomEvent('edge:reveal', { detail: target.slice(1) }));
+        run();
+        window.setTimeout(run, 280);
         return;
       }
-      if (typeof target === 'string') {
-        document.querySelector<HTMLElement>(target)?.scrollIntoView({
-          behavior: options?.immediate ? 'auto' : 'smooth',
-          block: 'start',
-        });
-        return;
-      }
-      if (typeof target === 'number') {
-        window.scrollTo({ top: target + offset, behavior: options?.immediate ? 'auto' : 'smooth' });
-        return;
-      }
-      target.scrollIntoView({ behavior: options?.immediate ? 'auto' : 'smooth', block: 'start' });
+
+      run();
     },
     [lenis],
   );

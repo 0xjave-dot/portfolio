@@ -81,7 +81,6 @@ export function Testimonials() {
 
   return (
     <section
-      id="testimony"
       className="defer-paint relative border-t border-line/15 py-section"
       aria-labelledby="testimony-title"
       onMouseEnter={() => setPaused(true)}
@@ -92,7 +91,7 @@ export function Testimonials() {
       <div className="shell grid grid-cols-12 gap-y-10 lg:gap-x-12">
         <div className="col-span-12 lg:col-span-4">
           <div className="flex items-center gap-3">
-            <span className="label text-accentInk">05</span>
+            <span className="label text-accentInk">06</span>
             <span className="label">Testimony</span>
           </div>
           <h2

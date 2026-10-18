@@ -15,7 +15,6 @@ export function Process() {
 
   return (
     <section
-      id="process"
       className="defer-paint relative border-t border-line/15 py-section"
       aria-labelledby="process-title"
     >
@@ -23,7 +22,7 @@ export function Process() {
         <div className="grid grid-cols-12 gap-y-6 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-6">
             <div className="flex items-center gap-3">
-              <span className="label text-accentInk">04</span>
+              <span className="label text-accentInk">05</span>
               <span className="label">Lifecycle</span>
             </div>
             <SplitText
@@ -92,11 +91,12 @@ export function Process() {
           <div className="col-span-12 lg:col-span-3">
             <span className="label">Tools of the trade</span>
             <p className="mt-3 max-w-[18rem] text-sm leading-relaxed text-ink/60">
-              Everything here has shipped on a real, paying project. Nothing is on the list because
-              it looks good in a grid.
+              Everything here has run somewhere real: a client build, a bot in a group chat, or a
+              script that only ever wakes up at 3am. Nothing is on the list because it looks good in
+              a grid.
             </p>
           </div>
-          <div className="col-span-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:col-span-9 lg:grid-cols-5">
+          <div className="col-span-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:col-span-9 lg:grid-cols-4">
             {skillGroups.map((group) => (
               <div key={group.label} className="flex flex-col gap-3">
                 <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em] text-accentInk">

@@ -3,6 +3,12 @@ import type { ReactNode } from 'react';
 
 interface DeferredProps {
   children: ReactNode;
+  /**
+   * Anchor id. It lives on this wrapper (which is always in the DOM) rather than
+   * on the section inside, so nav links and scroll-spy work before the section
+   * has been mounted.
+   */
+  id?: string;
   /** Space reserved before the section mounts, so the scroll position stays put. */
   minHeight?: string;
 }
@@ -14,7 +20,7 @@ interface DeferredProps {
  *
  * Emits `edge:layout` once mounted so ScrollTrigger can re-measure the document.
  */
-export function Deferred({ children, minHeight = '70vh' }: DeferredProps) {
+export function Deferred({ children, id, minHeight = '70vh' }: DeferredProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [show, setShow] = useState(false);
 
@@ -44,8 +50,18 @@ export function Deferred({ children, minHeight = '70vh' }: DeferredProps) {
     window.dispatchEvent(new Event('edge:layout'));
   }, [show]);
 
+  // A nav jump asks the target section to mount before the scroll starts.
+  useEffect(() => {
+    if (!id || show) return;
+    const onReveal = (event: Event) => {
+      if ((event as CustomEvent<string>).detail === id) setShow(true);
+    };
+    window.addEventListener('edge:reveal', onReveal);
+    return () => window.removeEventListener('edge:reveal', onReveal);
+  }, [id, show]);
+
   return (
-    <div ref={ref} style={show ? undefined : { minHeight }}>
+    <div id={id} ref={ref} style={show ? undefined : { minHeight }}>
       {show ? children : null}
     </div>
   );

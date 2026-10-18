@@ -65,12 +65,12 @@ const ogBase = `
     <text x="60" y="255" font-size="142" font-weight="800" letter-spacing="-8">RAVEN</text>
     <text x="60" y="368" font-size="142" font-weight="800" letter-spacing="-8" fill="none" stroke="${INK}" stroke-opacity="0.55" stroke-width="1.5">MAKES</text>
   </g>
-  <text x="60" y="492" font-family="Georgia, serif" font-style="italic" font-size="146" letter-spacing="-6" fill="${ACCENT}">websites.</text>
+  <text x="60" y="492" font-family="Georgia, serif" font-style="italic" font-size="146" letter-spacing="-6" fill="${ACCENT}">things.</text>
 
   <!-- footer -->
   <line x1="64" y1="536" x2="1136" y2="536" stroke="${INK}" stroke-opacity="0.15"/>
   <g font-family="Segoe UI, Arial, sans-serif">
-    <text x="64" y="572" font-size="17" fill="${INK}">Websites · booking systems · brand</text>
+    <text x="64" y="572" font-size="17" fill="${INK}">Websites · bots · games · scripts</text>
     <text x="64" y="600" font-size="12" letter-spacing="3" fill="${MUTED}">REACT · TYPESCRIPT · FIREBASE</text>
     <text x="1136" y="572" font-size="16" text-anchor="end" fill="${INK}">0xjave@gmail.com</text>
     <text x="1136" y="600" font-size="12" letter-spacing="3" text-anchor="end" fill="${MUTED}">6.5244° N, 3.3792° E</text>

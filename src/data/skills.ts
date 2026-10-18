@@ -3,28 +3,30 @@ export interface SkillGroup {
   items: string[];
 }
 
-/** Tools grid — only things that have shipped on a real, paying project. */
+/** Tools grid — only things that have actually run somewhere. */
 export const skillGroups: SkillGroup[] = [
   { label: 'Front-end', items: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Framer Motion', 'GSAP'] },
   { label: 'Back-end & data', items: ['Node.js', 'Firebase Auth', 'Firestore', 'Storage', 'REST APIs', 'Zod'] },
   { label: 'Commerce', items: ['Paystack', 'Flutterwave', 'Cart & checkout', 'Booking engines'] },
+  { label: 'Bots & automation', items: ['Python', 'Telegram Bot API', 'AI chat workflows', 'Webhooks', 'Scheduling'] },
+  { label: 'Data & markets', items: ['Market data', 'Order automation', 'Backtesting', 'CSV / ETL'] },
   { label: 'Brand & design', items: ['Figma', 'Design systems', 'Typography', 'Art direction'] },
   { label: 'Ship & measure', items: ['Git', 'GitHub', 'Render', 'Vercel', 'SEO', 'Core Web Vitals'] },
 ];
 
 /** The belt under the hero. Part skills, part warning label. */
 export const capabilities: string[] = [
-  'Brand identity',
+  'Websites',
   'UI/UX',
   'React',
   'TypeScript',
   'Firebase',
-  'Booking systems',
-  'Paystack',
-  'Flutterwave',
+  'Telegram bots',
+  'Browser games',
+  'Python',
+  'Market scripts',
+  'Automation',
   'Ecommerce',
-  'Node',
-  'Tailwind',
   'No small talk',
 ];
 

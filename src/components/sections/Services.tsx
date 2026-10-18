@@ -35,14 +35,13 @@ export function Services() {
 
   return (
     <section
-      id="services"
       className="defer-paint relative border-t border-line/15 py-section"
       aria-labelledby="services-title"
     >
       <div className="shell grid grid-cols-12 gap-y-10 lg:gap-x-12">
         <div className="col-span-12 lg:col-span-4">
           <div className="flex items-center gap-3">
-            <span className="label text-accentInk">03</span>
+            <span className="label text-accentInk">04</span>
             <span className="label">Capabilities</span>
           </div>
           <SplitText

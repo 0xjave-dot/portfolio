@@ -121,13 +121,12 @@ export function Contact() {
 
   return (
     <section
-      id="contact"
       className="defer-paint relative overflow-hidden border-t border-line/15 pt-section"
       aria-labelledby="contact-title"
     >
       <div className="shell">
         <div className="flex items-center gap-3">
-          <span className="label text-accentInk">06</span>
+          <span className="label text-accentInk">07</span>
           <span className="label">Send word</span>
         </div>
 

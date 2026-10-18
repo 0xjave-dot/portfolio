@@ -20,7 +20,7 @@ export interface NavItem {
 
 export const site = {
   brand: 'Raven',
-  tagline: 'Websites that behave.',
+  tagline: 'Websites, bots, and other things.',
   role: 'Web developer',
   location: 'Lagos, Nigeria',
   coords: '6.5244° N, 3.3792° E',
@@ -42,9 +42,9 @@ export const site = {
    * Placeholder origin — replace with the production domain before launch.
    */
   url: 'https://0xjave-dot.github.io/portfolio',
-  title: 'Raven — web developer in Lagos',
+  title: 'Raven — websites, bots and other things',
   description:
-    'Websites, booking systems, catalogues and brand identities, built end to end. React, TypeScript, Firebase, Paystack. Lagos, Nigeria.',
+    'Raven makes websites, Telegram bots, browser games, Python market scripts and AI chat workflows — built end to end. React, TypeScript, Firebase, Paystack. Lagos, Nigeria.',
   github: 'https://github.com/0xjave-dot',
   socials: [
     { label: 'GitHub', href: 'https://github.com/0xjave-dot', handle: '@0xjave-dot' },
@@ -55,17 +55,27 @@ export const site = {
 
 export const navItems: NavItem[] = [
   { label: 'Work', href: '#work', id: 'work', index: '01' },
-  { label: 'The bird', href: '#about', id: 'about', index: '02' },
-  { label: 'What I do', href: '#services', id: 'services', index: '03' },
-  { label: 'Process', href: '#process', id: 'process', index: '04' },
+  { label: 'Side quests', href: '#quests', id: 'quests', index: '02' },
+  { label: 'The bird', href: '#about', id: 'about', index: '03' },
+  { label: 'What I do', href: '#services', id: 'services', index: '04' },
   { label: 'Contact', href: '#contact', id: 'contact', index: '05' },
 ];
 
-export const sectionIds = ['hero', 'work', 'about', 'services', 'process', 'testimony', 'contact'] as const;
+export const sectionIds = [
+  'hero',
+  'work',
+  'quests',
+  'about',
+  'services',
+  'process',
+  'testimony',
+  'contact',
+] as const;
 
 export const sectionLabels: Record<string, string> = {
   hero: 'Specimen',
   work: 'Field records',
+  quests: 'Side quests',
   about: 'The bird',
   services: 'Capabilities',
   process: 'Lifecycle',

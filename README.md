@@ -12,9 +12,14 @@ Everything on the page is editable from `src/data/*` — no component edits need
 
 ## What's in it
 
-- **Home** — hero, capability belt, pinned horizontal work section, the bird (specimen sheet,
-  footnotes, known bugs, special interests), capabilities accordion, lifecycle process, testimony
-  (deliberately empty, see below), contact form and a sticky-reveal footer.
+- **Home** — hero, capability belt, pinned horizontal work section, **side quests** (the things
+  that aren't client websites), the bird (specimen sheet, footnotes, known bugs, special
+  interests), capabilities accordion, lifecycle process, testimony (deliberately empty, see
+  below), contact form and a sticky-reveal footer.
+- **Side quests** — a ledger of the non-client work: the Warhammer dreadnought Telegram bot (with a
+  sample exchange rendered as a terminal), browser trivia and rebus games, Python market scripts,
+  the binary options script, the blog, and AI chat workflows. Each has a stack, a deadpan note and
+  an honest status word ("Alive, mostly", "Retired", "Dabbling").
 - **Case studies** — one templated page at `/work/:slug` for each of the four projects: full-bleed
   hero in the client's own palette, meta row, overview / challenge / what I built / results,
   screenshot gallery with a lightbox, and a click-to-load live `<iframe>` preview with a graceful
@@ -78,6 +83,7 @@ Node 20+ recommended (built on Node 22).
 |------|----------|
 | `src/data/site.ts` | Name, email, phone, WhatsApp, socials, availability, SEO title/description, nav items |
 | `src/data/projects.ts` | The four case studies: copy, facts, palette, screenshot paths, live URLs |
+| `src/data/quests.ts` | Side quests (bots, games, scripts, blog) + the dreadnought sample exchange |
 | `src/data/services.ts` | The capabilities accordion |
 | `src/data/skills.ts` | Marquee items, tools grid, lifecycle steps, special interests, known bugs |
 | `src/data/testimonials.ts` | Client quotes (currently empty on purpose — see below) |
@@ -149,6 +155,9 @@ After deploying, replace the placeholder origin in `src/data/site.ts`, `index.ht
 - **No invented testimonials.** The testimony section says, in public, that nothing is on the
   record yet and shows redacted placeholder cards. Fabricating a quote and putting it in a
   client's mouth is a strange thing to do; the empty state is styled as intentional instead.
+- **Side quests get their own section.** Raven makes more than websites, but a client reading the
+  page needs the paid work first. The quests ledger sits directly under the case studies and is
+  explicitly unpaid ("Unpaid, unbothered") so range reads as range, not as a service menu.
 - **No invented metrics.** Case-study "results" only contain facts observable from the live
   sites (product counts, locations, prices, published claims), and each page says where those
   numbers come from.
@@ -174,23 +183,24 @@ Lighthouse (Chrome, mobile preset, throttled), measured against the production b
 | Accessibility | **100** |
 | Best practices | **100** |
 | SEO | **100** |
-| Performance | **53** |
+| Performance | **67** |
 
-What that means honestly: the page is a client-rendered React app with a large animated hero, so
-the first paint waits on ~135KB of gzipped JavaScript (React + Framer Motion + the hero/featured
-work). On a throttled mobile CPU that is the whole bottleneck — LCP lands around 6s, and no amount
-of image or font tuning moves it much. What *is* already done:
+Metrics behind that: FCP 3.6s, LCP 6.1s, TBT 130ms, CLS 0.004. The page is a client-rendered React
+app with a large animated hero, so the first paint waits on ~135KB of gzipped JavaScript (React +
+Framer Motion + the hero/featured work). On a throttled mobile CPU that is the whole bottleneck —
+LCP is the hero h1/plate, not an image or font problem. What is already done:
 
 - GSAP + ScrollTrigger load only when the work section is near (separate `gsap` chunk).
-- Services, Process, Testimony and Contact are lazy chunks mounted within 1.2 viewports.
+- Side quests, Services, Process, Testimony and Contact are lazy chunks mounted within 1.2
+  viewports, and their anchor ids live on always-present wrappers so nav jumps never miss.
 - Fonts are self-hosted, latin-only, and the three faces used above the fold are preloaded, which
-  removed all layout shift (CLS is **0**).
+  removed essentially all layout shift (CLS 0.004).
 - Case-study routes are code-split; offscreen sections use `content-visibility: auto`.
 - All imagery is WebP with explicit dimensions and lazy loading below the fold.
 
-If a 90+ mobile score is a hard requirement, the next step is server-rendering the hero and the
-work list (Vite SSR or Astro) so the first paint no longer waits on the bundle. That is a
-different architecture, not a tweak, so it was left out of this build.
+If 90+ mobile performance is a hard requirement, the next step is server-rendering the hero and the
+work list (Vite SSR or Astro) so the first paint no longer waits on the bundle. That is a different
+architecture, not a tweak, so it was left out of this build.
 
 
 ## TODO for Raven
@@ -207,6 +217,10 @@ different architecture, not a tweak, so it was left out of this build.
 - [ ] **Metrics** — the "site claims" in each case study (14 countries, 500+ orders, 2,000+
       clients, etc.) are the clients' own published figures; replace or remove them if they are
       out of date.
+- [ ] **Side quests** — confirm the status words in `src/data/quests.ts` ("Alive, mostly",
+      "Running", "Retired", "Ran it", "Dabbling") still match reality, and add links or repos if
+      any are public. The binary options entry is written as a cautionary aside rather than a
+      service — keep it that way or cut it.
 - [ ] **Artwork** — the raven renders and the favicon come from the old portfolio. Make sure you
       own or are licensed to reuse them, and swap in higher-resolution originals if you have them
       (`public/bird/`, keep the same filenames).
@@ -226,10 +240,10 @@ portfolio/
       layout/             Navbar, Footer, Preloader, PageCurtain, ScrollProgress
       motion/             Parallax
       providers/          ThemeProvider, SmoothScroll (Lenis + GSAP ticker)
-      sections/           Hero, MarqueeStrip, Work, About, Services, Process, Testimonials, Contact
+      sections/           Hero, MarqueeStrip, Work, SideQuests, About, Services, Process, Testimonials, Contact
       terminal/           Terminal easter egg
       ui/                 SplitText, Reveal, MagneticButton, Marquee, Lightbox, Toast, Annotation
-    data/                 site, projects, services, skills, testimonials, bird
+    data/                 site, projects, quests, services, skills, testimonials, bird
     hooks/                useLenis, useMagnetic, useMediaQuery, useReducedMotion, useLocalTime, …
     lib/                  utils, gsap, seo, intro, contexts
     pages/                Home, CaseStudy, NotFound

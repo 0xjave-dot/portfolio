@@ -168,7 +168,7 @@ export function Hero() {
 
           {/* headline */}
           <h1 className="relative z-10 font-display font-medium leading-[0.78] tracking-[-0.055em]">
-            <span className="sr-only">Raven makes websites. And the systems behind them.</span>
+            <span className="sr-only">Raven makes things. Websites, bots, games, scripts.</span>
             <span aria-hidden="true">
               <Line ready={ready} delay={0.1} still={firstVisit}>
                 <span className="block text-[clamp(3.2rem,11.6vw,10.5rem)]">RAVEN</span>
@@ -177,8 +177,8 @@ export function Hero() {
                 <span className="outline-type block text-[clamp(3.2rem,11.6vw,10.5rem)]">MAKES</span>
               </Line>
               <Line ready={ready} delay={0.3} still={firstVisit}>
-                <span className="block font-serif text-[clamp(3.4rem,13vw,11.5rem)] font-normal italic leading-[0.8] tracking-[-0.03em] text-accentInk">
-                  websites.
+                <span className="block font-serif text-[clamp(3.8rem,12.4vw,11.5rem)] font-normal italic leading-[0.8] tracking-[-0.03em] text-accentInk">
+                  things.
                 </span>
               </Line>
             </span>
@@ -217,8 +217,9 @@ export function Hero() {
               animate={firstVisit || reduced ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: EASE, delay: 0.6 }}
             >
-              Web apps, booking systems, catalogues, brand. One bird, start to finish — no handoffs,
-              no “circling back”. Lagos, awake at 2am.
+              Websites, mostly. Also a Telegram bot with a dreadnought’s personality, trivia games,
+              Python scripts that watch markets, and the occasional automation. One bird, start to
+              finish — no handoffs, no “circling back”.
             </motion.p>
 
             <motion.div

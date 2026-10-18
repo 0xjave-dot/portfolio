@@ -8,7 +8,8 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { FigureCaption, Stamp } from '@/components/ui/Annotation';
 import { SplitText } from '@/components/ui/SplitText';
 
-const LEAD = 'I build websites. That’s the job. I’ve been doing it long enough that I stopped guessing.';
+const LEAD =
+  'I make things. Websites, mostly — but the list keeps growing, and I stopped guessing a while ago.';
 
 const BIO = [
   'I read the docs. I notice when a button is two pixels off, and I don’t stop until the form works at 360px. It’s the reason the spacing is right.',
@@ -22,6 +23,7 @@ const SPEC = [
   ['Habitat', 'Dark rooms, 2am, 47 open tabs'],
   ['Call', 'Low. Mostly swear words.'],
   ['Diet', 'Coffee, bugs, other people’s CSS'],
+  ['Also makes', 'Bots, games, market scripts, AI workflows'],
   ['Social', 'Avoidant, until you mention tanks'],
 ];
 
@@ -133,7 +135,7 @@ export function About() {
         {/* record column */}
         <div className="col-span-12 flex flex-col gap-8 lg:col-span-6 lg:col-start-7">
           <div className="flex items-center gap-3">
-            <span className="label text-accentInk">02</span>
+            <span className="label text-accentInk">03</span>
             <span className="label">The bird</span>
           </div>
 
