@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { processSteps, skillGroups } from '@/data/skills';
+import { processSteps } from '@/data/skills';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { Reveal } from '@/components/ui/Reveal';
 import { SplitText } from '@/components/ui/SplitText';
@@ -83,42 +83,6 @@ export function Process() {
               loading="lazy"
               className="h-6 w-6 rounded-[3px] object-cover opacity-50 ring-1 ring-line/15"
             />
-          </div>
-        </div>
-
-        {/* tools */}
-        <div className="mt-20 grid grid-cols-12 gap-y-8 border-t border-line/15 pt-10 sm:mt-24 lg:gap-x-10">
-          <div className="col-span-12 lg:col-span-3">
-            <span className="label">Tools of the trade</span>
-            <p className="mt-3 max-w-[18rem] text-sm leading-relaxed text-ink/60">
-              Everything here has run somewhere real: a client build, a bot in a group chat, or a
-              script that only ever wakes up at 3am. Nothing is on the list because it looks good in
-              a grid.
-            </p>
-          </div>
-          <div className="col-span-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:col-span-9 lg:grid-cols-4">
-            {skillGroups.map((group) => (
-              <div key={group.label} className="flex flex-col gap-3">
-                <span className="font-mono text-[0.56rem] uppercase tracking-[0.18em] text-accentInk">
-                  {group.label}
-                </span>
-                <ul className="flex flex-col gap-1.5">
-                  {group.items.map((item) => (
-                    <li key={item}>
-                      <span className="group flex items-center justify-between gap-2 border-b border-line/10 pb-1 text-[0.82rem] text-ink/75 transition-colors duration-300 hover:text-ink">
-                        {item}
-                        <span
-                          aria-hidden="true"
-                          className="translate-y-1 font-mono text-[0.6rem] text-accent opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                        >
-                          ✳
-                        </span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </div>
         </div>
       </div>

@@ -124,14 +124,19 @@ export function Footer() {
               <a href={`tel:${site.phone.tel}`} className="label text-ink hover:text-accentInk">
                 {site.phone.display}
               </a>
-              <a
-                href={site.github}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="label text-ink hover:text-accentInk"
-              >
-                GitHub
-              </a>
+              {site.socials
+                .filter((social) => social.label === 'GitHub')
+                .map((social) => (
+                  <a
+                    key={social.handle}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="label text-ink hover:text-accentInk"
+                  >
+                    GitHub {social.handle}
+                  </a>
+                ))}
             </div>
           </div>
         </div>
