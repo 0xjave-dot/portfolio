@@ -25,7 +25,7 @@ export const quests: Quest[] = [
     summary:
       'A Telegram bot for a Warhammer group chat with the personality of a dreadnought: ancient, sarcastic, and absolutely certain it is right.',
     stack: ['Python', 'Telegram Bot API'],
-    note: 'It has opinions. It has seen things. It will not be reasoned with.',
+    note: 'It has opinions. It has seen things and will not be reasoned with.',
     state: 'Alive, mostly',
   },
   {
@@ -33,7 +33,7 @@ export const quests: Quest[] = [
     name: 'TRIVIA & REBUS',
     kind: 'Browser games',
     summary:
-      'Web trivia and rebus puzzles, built for friends who argue about the answers more than they play.',
+      'Web trivia and rebus puzzles, built for my friends (we end up arguing about the answers more often than we actually play.)',
     stack: ['React', 'TypeScript'],
     note: 'Made for six people who take scoring very seriously.',
     state: 'Built',
@@ -43,7 +43,7 @@ export const quests: Quest[] = [
     name: 'MARKET SCRIPTS',
     kind: 'Python · automation',
     summary:
-      'Python scripts that pull market data, run the analysis, and place orders without me watching a chart at 3am.',
+      'I used to be crazy about trading, I was sure there was a loophole somewhere to exploit, glad I did not find it, the feds would have gotten me.',
     stack: ['Python', 'REST APIs', 'Scheduling'],
     note: 'Built so I could stop refreshing charts. It still runs.',
     state: 'Running',
@@ -53,23 +53,13 @@ export const quests: Quest[] = [
     name: 'BINARY OPTIONS SCRIPT',
     kind: 'Python · trading',
     summary:
-      'A script for trading binary options, written because I wanted to know whether the pattern actually held.',
+      'What can I say? I can be a bit of a risk-taker.',
     stack: ['Python'],
     note: 'Do not start here. It worked, which is not the same as a good idea.',
     state: 'Retired',
   },
   {
     index: '05',
-    name: 'THE BLOG',
-    kind: 'Writing · publishing',
-    summary:
-      'A blog, back when that was a thing people did. Kept alive longer than most, and killed on purpose.',
-    stack: ['Writing', 'SEO', 'Publishing'],
-    note: 'Ran it, wrote it, shut it down. Learned more from that than from most tutorials.',
-    state: 'Ran it',
-  },
-  {
-    index: '06',
     name: 'AI CHAT WORKFLOWS',
     kind: 'LLM · automation',
     summary:

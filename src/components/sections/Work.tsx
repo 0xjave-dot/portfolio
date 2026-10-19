@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Project } from '@/data/projects';
 import { projects } from '@/data/projects';
@@ -7,6 +7,31 @@ import { cn, pad } from '@/lib/utils';
 
 function BrowserFrame({ project, className }: { project: Project; className?: string }) {
   const host = project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  const frameRef = useRef<HTMLDivElement | null>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame || isInView) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '120px', threshold: 0.1 },
+    );
+    observer.observe(frame);
+    return () => observer.disconnect();
+  }, [isInView]);
+
   return (
     <div
       className={cn(
@@ -25,15 +50,21 @@ function BrowserFrame({ project, className }: { project: Project; className?: st
           {host}
         </span>
       </div>
-      <div className="relative overflow-hidden bg-surface">
+      <div
+        ref={frameRef}
+        className="project-capture-viewport relative aspect-[16/10] overflow-hidden bg-surface"
+      >
         <img
-          src={project.images.hero.src}
-          alt={project.images.hero.alt}
-          width={project.images.hero.width}
-          height={project.images.hero.height}
+          src={project.images.full.src}
+          alt={project.images.full.alt}
+          width={project.images.full.width}
+          height={project.images.full.height}
           loading="lazy"
           decoding="async"
-          className="aspect-[16/10] w-full object-cover object-top grayscale-[35%] transition-[transform,filter] duration-[900ms] ease-edge group-hover/frame:scale-[1.025] group-hover/frame:grayscale-0"
+          className={cn(
+            'project-capture-image block w-full grayscale-[20%] transition-[filter] duration-700 group-hover/frame:grayscale-0',
+            isInView && 'project-capture-image-active',
+          )}
         />
       </div>
     </div>
@@ -260,14 +291,11 @@ export function Work() {
             id="work-title"
             className="mt-3 font-display text-[clamp(2.2rem,6vw,4.6rem)] font-medium leading-[0.92] tracking-[-0.045em]"
           >
-            Four specimens,
-            <br />
-            <span className="font-serif italic tracking-[-0.02em] text-ink/60">all still alive.</span>
+            Selected <span className="font-serif italic tracking-[-0.02em] text-ink/60">projects</span>
           </h2>
         </div>
         <p className="max-w-xs text-sm leading-relaxed text-ink/60">
-          Client sites and booking platforms, running right now. Every one links to the real thing —
-          poke at them.
+          I picked a few of my builds to show you, running right now. Every one links to the real thing.
         </p>
       </div>
 

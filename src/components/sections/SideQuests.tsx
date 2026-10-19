@@ -58,7 +58,7 @@ function Transcript() {
 
 /**
  * Side quests: everything that isn't a client website. This is where the range
- * (bots, games, trading scripts, writing, automation) lives, kept separate from
+ * (bots, games, trading scripts, automation) lives, kept separate from
  * the paid work above so a business owner still reads the case studies first.
  */
 export function SideQuests() {
@@ -82,10 +82,10 @@ export function SideQuests() {
             />
             <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/60 sm:text-base">
               Not everything has an invoice attached. A Telegram bot with a bad attitude, games for
-              friends, scripts that watch markets, a blog nobody asked for. Same brain, less polish.
+              friends, scripts that watch markets, and automation experiments. Same brain, less polish.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Stamp className="text-stamp">Unpaid, unbothered</Stamp>
+              <Stamp className="text-stamp">FOR THE LOVE OF THE GAME</Stamp>
               <span className="font-mono text-[0.55rem] uppercase tracking-[0.16em] text-muted">
                 Some of these are still running
               </span>

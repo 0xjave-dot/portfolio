@@ -2,6 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes tech-glider-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes tech-glider-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.tech-glider-track {
+  display: flex;
+  width: max-content;
+}
+
+.tech-glider-track-left {
+  animation: tech-glider-left 45s linear infinite;
+}
+
+.tech-glider-track-right {
+  animation: tech-glider-right 45s linear infinite;
+}
+
+.tech-glider-track-left:hover,
+.tech-glider-track-right:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-glider-track-left,
+  .tech-glider-track-right {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes project-capture-scroll {
+  0%,
+  5% {
+    transform: translateY(0);
+  }
+  90%,
+  100% {
+    transform: translateY(calc(100cqh - 100%));
+  }
+}
+
+.project-capture-viewport {
+  container-type: size;
+}
+
+.project-capture-image {
+  animation: project-capture-scroll 28s cubic-bezier(0.42, 0, 0.58, 1) 1s infinite alternate paused;
+}
+
+.project-capture-image-active {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-capture-image,
+  .project-capture-image-active {
+    animation: none;
+    transform: translateY(0);
+  }
+}
+
 /* ------------------------------------------------------------------ */
 /*  Tokens                                                             */
 /* ------------------------------------------------------------------ */

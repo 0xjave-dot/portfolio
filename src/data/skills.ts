@@ -7,7 +7,7 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   { label: 'Front-end', items: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Framer Motion', 'GSAP'] },
   { label: 'Back-end & data', items: ['Node.js', 'Firebase Auth', 'Firestore', 'Storage', 'REST APIs', 'Zod'] },
-  { label: 'Commerce', items: ['Paystack', 'Flutterwave', 'Cart & checkout', 'Booking engines'] },
+  { label: 'Commerce', items: ['Paystack', 'Flutterwave', 'Bachs', 'Cart & checkout', 'Booking engines'] },
   { label: 'Bots & automation', items: ['Python', 'Telegram Bot API', 'AI chat workflows', 'Webhooks', 'Scheduling'] },
   { label: 'Data & markets', items: ['Market data', 'Order automation', 'Backtesting', 'CSV / ETL'] },
   { label: 'Brand & design', items: ['Figma', 'Design systems', 'Typography', 'Art direction'] },

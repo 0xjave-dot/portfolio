@@ -141,8 +141,8 @@ export function Contact() {
         </h2>
 
         <p className="mt-6 max-w-lg text-base leading-relaxed text-ink/70">
-          Tell me what you’re building, what’s broken, and when it needs to be live. I reply in full
-          sentences, usually within a day. No discovery-call theatre.
+          Tell me what you’re building, and when it needs to be live. I reply in full
+          sentences, usually instantly (I have no life outside this) 
         </p>
 
         <div className="pointer-events-none absolute right-[5vw] top-24 z-0 hidden w-[15rem] lg:block">

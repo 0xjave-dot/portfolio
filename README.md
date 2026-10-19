@@ -157,7 +157,7 @@ After deploying, replace the placeholder origin in `src/data/site.ts`, `index.ht
   client's mouth is a strange thing to do; the empty state is styled as intentional instead.
 - **Side quests get their own section.** Raven makes more than websites, but a client reading the
   page needs the paid work first. The quests ledger sits directly under the case studies and is
-  explicitly unpaid ("Unpaid, unbothered") so range reads as range, not as a service menu.
+  explicitly unpaid ("FOR THE LOVE OF THE GAME") so range reads as range, not as a service menu.
 - **No invented metrics.** Case-study "results" only contain facts observable from the live
   sites (product counts, locations, prices, published claims), and each page says where those
   numbers come from.
