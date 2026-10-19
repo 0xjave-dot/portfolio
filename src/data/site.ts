@@ -50,7 +50,7 @@ export const site = {
     { label: 'GitHub', href: 'https://github.com/0xjave-dot', handle: '@0xjave-dot' },
     { label: 'GitHub', href: 'https://github.com/jesse781227-U', handle: '@jesse781227-U' },
     { label: 'X', href: 'https://x.com/CorvusCorax0x', handle: '@CorvusCorax0x' },
-  ] satisfies SocialLink[],
+  ] as SocialLink[],
 } as const;
 
 export const navItems: NavItem[] = [
