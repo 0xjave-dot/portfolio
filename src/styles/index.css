@@ -433,6 +433,27 @@ mark {
   .work-stack {
     display: block !important;
   }
+  .process-pin {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .process-track {
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+  .process-track ol {
+    height: auto !important;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .process-step {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  .process-line {
+    display: none;
+  }
 }
 
 /* ------------------------------------------------------------------ */
