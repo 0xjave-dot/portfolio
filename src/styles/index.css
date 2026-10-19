@@ -420,19 +420,10 @@ mark {
 
 /* Work section layout switch — CSS only, so React never unmounts a pinned tree. */
 .work-horizontal {
-  display: none;
-}
-.work-stack {
   display: block;
 }
-
-@media (min-width: 1024px) {
-  .work-horizontal {
-    display: block;
-  }
-  .work-stack {
-    display: none;
-  }
+.work-stack {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

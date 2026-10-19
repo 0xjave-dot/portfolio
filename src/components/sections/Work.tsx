@@ -130,21 +130,21 @@ function StackTags({ project }: { project: Project }) {
 
 function WorkPanel({ project }: { project: Project }) {
   return (
-    <article className="flex h-full w-full shrink-0 items-center px-[6vw]">
-      <div className="mx-auto grid w-full max-w-[74rem] grid-cols-12 items-center gap-6 lg:gap-10">
-        <div className="col-span-12 flex flex-col gap-5 lg:col-span-4">
+    <article className="flex h-full w-full shrink-0 items-center px-[6vw] py-10 sm:py-12 lg:py-0">
+      <div className="mx-auto grid w-full max-w-[74rem] grid-cols-12 items-center gap-4 sm:gap-6 lg:gap-10">
+        <div className="order-2 col-span-12 flex flex-col gap-3 sm:gap-4 lg:order-1 lg:col-span-4 lg:gap-5">
           <PanelMeta project={project} />
-          <h3 className="font-display text-[clamp(2rem,4.2vw,3.6rem)] font-medium leading-[0.94] tracking-[-0.04em]">
+          <h3 className="font-display text-[clamp(1.7rem,7vw,3.6rem)] font-medium leading-[0.94] tracking-[-0.04em]">
             {project.name}
           </h3>
-          <p className="max-w-sm font-serif text-[clamp(1.05rem,1.6vw,1.3rem)] italic leading-snug text-ink/80">
+          <p className="max-w-sm font-serif text-[clamp(0.95rem,3.8vw,1.3rem)] italic leading-snug text-ink/80">
             {project.note}
           </p>
-          <p className="max-w-sm text-sm leading-relaxed text-ink/55">{project.summary}</p>
+          <p className="max-w-sm text-xs leading-relaxed text-ink/55 sm:text-sm">{project.summary}</p>
           <StackTags project={project} />
           <PanelLinks project={project} />
         </div>
-        <div className="col-span-12 lg:col-span-8">
+        <div className="order-1 col-span-12 lg:order-2 lg:col-span-8">
           <div className="relative">
             <BrowserFrame project={project} />
             <span className="stamp absolute -bottom-3 right-4 bg-paper text-stamp">{project.stamp}</span>
@@ -178,10 +178,11 @@ function WorkStack() {
 /**
  * Selected work.
  *
- * Desktop: the section pins and four project panels travel horizontally, scrubbed
- * by scroll position (GSAP + ScrollTrigger on Lenis' ticker).
+ * The section pins at every screen size and four project panels travel
+ * horizontally, scrubbed by vertical scroll position (GSAP + ScrollTrigger on
+ * Lenis' ticker).
  *
- * Mobile / reduced motion: a plain vertical stack. The switch is CSS-only
+ * Reduced motion: a plain vertical stack. The switch is CSS-only
  * (`.work-horizontal` / `.work-stack`), so React never unmounts a subtree that
  * ScrollTrigger has re-parented into a pin-spacer — which is what used to throw
  * "removeChild is not a child of this node" on resize.
@@ -210,7 +211,7 @@ export function Work() {
 
       const media = gsap.matchMedia();
 
-      media.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+      media.add('(prefers-reduced-motion: no-preference)', () => {
         const distance = () => Math.max(0, track.scrollWidth - pin.clientWidth);
 
         const tween = gsap.to(track, {
