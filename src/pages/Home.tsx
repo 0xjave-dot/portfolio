@@ -12,7 +12,7 @@ import { usePageMeta } from '@/hooks/usePageMeta';
  * get close to the viewport. The hero, the work section and the about section are
  * the only things in the critical path.
  *
- * The section anchors (`#quests`, `#services`, `#process`, `#testimony`,
+ * The section anchors (`#quests`, `#services`, `#process`,
  * `#contact`) live on the Deferred wrappers so they exist from first paint —
  * otherwise a nav jump to a not-yet-mounted section would go nowhere.
  */
@@ -21,9 +21,6 @@ const SideQuests = lazy(() =>
 );
 const Services = lazy(() => import('@/components/sections/Services').then((m) => ({ default: m.Services })));
 const Process = lazy(() => import('@/components/sections/Process').then((m) => ({ default: m.Process })));
-const Testimonials = lazy(() =>
-  import('@/components/sections/Testimonials').then((m) => ({ default: m.Testimonials })),
-);
 const Contact = lazy(() => import('@/components/sections/Contact').then((m) => ({ default: m.Contact })));
 
 export default function Home() {
@@ -48,11 +45,6 @@ export default function Home() {
       <Deferred id="process" minHeight="80vh">
         <Suspense fallback={null}>
           <Process />
-        </Suspense>
-      </Deferred>
-      <Deferred id="testimony" minHeight="60vh">
-        <Suspense fallback={null}>
-          <Testimonials />
         </Suspense>
       </Deferred>
       <Deferred id="contact" minHeight="90vh">

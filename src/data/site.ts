@@ -68,7 +68,6 @@ export const sectionIds = [
   'about',
   'services',
   'process',
-  'testimony',
   'contact',
 ] as const;
 
@@ -79,6 +78,5 @@ export const sectionLabels: Record<string, string> = {
   about: 'The bird',
   services: 'Capabilities',
   process: 'Lifecycle',
-  testimony: 'Testimony',
   contact: 'Send word',
 };
