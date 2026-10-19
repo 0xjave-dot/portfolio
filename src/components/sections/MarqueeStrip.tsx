@@ -35,22 +35,27 @@ const frontEndAndData: TechItem[] = [
 ];
 
 const designAndTools: TechItem[] = [
-  { name: 'Paystack', icon: 'paystack' },
-  { name: 'Flutterwave', icon: 'flutterwave' },
-  { name: 'Bachs' },
+  {
+    name: 'Paystack',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Paystack_Logo.svg',
+  },
+  {
+    name: 'Flutterwave',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Flutterwave_Logo.png',
+  },
+  {
+    name: 'Bachs',
+    logoUrl: 'https://bachs.io/_astro/BACHS_Lettermark_Black.B117O8yP.svg',
+  },
   { name: 'Cart & checkout', icon: 'shopify' },
   { name: 'Booking engines', icon: 'calendly' },
   { name: 'PXXL.APP', logoUrl: 'https://pxxl.app/favicon.ico' },
   { name: 'Telegram Bot API', icon: 'telegram' },
   { name: 'AI chat workflows', icon: 'openai' },
-  { name: 'Webhooks' },
-  { name: 'Scheduling' },
   { name: 'Market data', icon: 'tradingview' },
   { name: 'Order automation', icon: 'python' },
   { name: 'Backtesting', icon: 'chartdotjs' },
-  { name: 'CSV / ETL' },
   { name: 'Design systems', icon: 'storybook' },
-  { name: 'Typography' },
   { name: 'Art direction', icon: 'figma' },
   { name: 'Render', icon: 'render' },
   { name: 'SEO', icon: 'googlesearchconsole' },
