@@ -15,7 +15,7 @@ Playwright pass over the live deployment at 1440×900 and 390×844.
 | # | Section | Component | What it does |
 |---|---------|-----------|--------------|
 | — | Nav | inline in `HeroSection` | No wordmark, no links. A single top-right status pill — "Agency Website Under Construction (Slowly)" in matrix green `#00FF41` — plus a pulsing dot. |
-| 01 | **Hero** | `HeroSection.tsx` | Full-viewport. A 3D cut-out portrait sits behind/under a `7–9vw` black uppercase headline: *"Hey, I'm Raven, I uhh… I build stuff"*. Bottom-left aside copy, bottom-right gradient "Find Me" pill (WhatsApp). Vertical side rails ("Portfolio / 2026 / Digital Arts", "Based in Los Angeles / Worldwide"). |
+| 01 | **Hero** | `HeroSection.tsx` | Full-viewport. A 3D cut-out portrait sits behind/under a `7–9vw` black uppercase headline: *"Hey, I'M JESSE, I uhh… I build stuff"*. Bottom-left aside copy, bottom-right gradient "Find Me" pill (WhatsApp). Vertical side rails ("Portfolio / 2026 / Digital Arts", "Based in Los Angeles / Worldwide"). |
 | 02 | **Marquee** | `MarqueeSection.tsx` | Two counter-scrolling rows of tech chips (logo + mono label): HTML, CSS, JS, React, Next, Tailwind, Node, Express, Python, Django, Mongo, Postgres, MySQL, Firebase, Supabase, Pandas, NumPy, Jupyter / Figma, Framer, GA, Search Console, Ahrefs, SEMrush, Notion, Obsidian, WordPress, Medium, Canva, Git, GitHub, Vercel, Netlify, Docker, Postman. Pauses on hover. |
 | 03 | **About** | `AboutSection.tsx` | Centred, `min-h-screen`. Huge gradient "About me" heading (`clamp(3rem, 12vw, 160px)`), four decorative 3D PNGs absolutely positioned at the corners, a scroll-scrubbed word-by-word paragraph (`AnimatedText`), and a WhatsApp CTA. |
 | 04 | **Services** | `ServicesSection.tsx` | White section with a 40–60px top radius. 9 numbered rows (`01`–`09`), each a giant numeral, a name and a long, jokey paragraph. |
@@ -75,7 +75,7 @@ deliberate IA change: the brief is project-led, and a client should see proof be
 
 | Old | New |
 |-----|-----|
-| "Hey, I'm Raven, I uhh… I build stuff" | "RAVEN / MAKES / websites." — the same first-person swagger, minus the apology. |
+| "Hey, I'M JESSE, I uhh… I build stuff" | "RAVEN / MAKES / websites." — the same first-person swagger, minus the apology. |
 | "Find Me" WhatsApp pill | "Send word" in the nav, plus an explicit WhatsApp / email block in contact. |
 | "Agency Website Under Construction (Slowly)" | "Permanently under construction" rail in the hero, and "Open for work — slowly, but open". |
 | "About me" + the joke chain | "The bird": a specimen sheet (species, range, habitat, call, diet, social), a short honest bio, footnotes, known bugs, special interests. |
