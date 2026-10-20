@@ -80,8 +80,8 @@ export const projects: Project[] = [
     ],
     liveUrl: 'https://gic-admin-static.onrender.com/',
     summary:
-      'A free messaging platform that replaces SMS: push notifications to every member, targeted by who they actually are.',
-    note: '₦5 per SMS, times a few thousand members, equals eight messages a year. So I built the free one.',
+      'A church messaging app for sharing updates with the right members, without the cost of SMS.',
+    note: 'Church updates, sent straight to members’ phones.',
     stamp: 'In production',
     standfirst:
       'Churches do not have a communications problem. They have a maths problem — and the fix was to stop sending SMS at all.',
@@ -144,8 +144,8 @@ export const projects: Project[] = [
     role: ['UI/UX design', 'Front-end build', 'Brand presence'],
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     liveUrl: 'https://zanorispaces.com/',
-    summary: 'An image-forward gallery for a Lagos interiors studio, on its own domain.',
-    note: 'Interiors that cost more than my rent. The site had to keep up.',
+    summary: 'A home for Zanori Spaces’ interior projects, services and shop, built around the studio’s photography.',
+    note: 'Room to explore the studio’s work before getting in touch.',
     stamp: 'Live',
     standfirst:
       'A design studio whose work sells itself — so the site is built to get out of the way of the photography.',
@@ -202,8 +202,8 @@ export const projects: Project[] = [
     role: ['UI/UX design', 'Full-stack build', 'Catalogue architecture'],
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Node'],
     liveUrl: 'https://apreeltree.onrender.com/',
-    summary: 'A trust-first export storefront for Nigerian staples sold in bulk to Europe and the USA.',
-    note: 'Bulk food exports to Europe. Trust first, jollof later.',
+    summary: 'A catalogue of Nigerian food staples for buyers looking to order in bulk from abroad.',
+    note: 'A straightforward way for overseas buyers to explore Nigerian produce.',
     stamp: 'Live',
     standfirst:
       'When your buyer is 5,000km away and spending five figures, trust is the product. The site had to prove it before the first scroll ended.',
@@ -261,8 +261,8 @@ export const projects: Project[] = [
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase'],
     liveUrl: 'https://fitables.onrender.com/',
     summary:
-      'A luxury spa brand across three Lagos locations, with a full treatment menu and online booking.',
-    note: 'Three Lagos spas, thirty treatments, one booking flow. The favour that got out of hand.',
+      'A spa site for browsing treatments, checking the three Lagos locations and booking a session.',
+    note: 'Find a treatment, choose a location and book a visit.',
     stamp: 'First client',
     standfirst:
       'The first major client. Three branches, dozens of priced treatments, and a brand that had to feel like the price tag.',
@@ -320,8 +320,8 @@ export const projects: Project[] = [
     stack: ['React', 'TypeScript', 'Tailwind CSS'],
     liveUrl: 'https://dudja.onrender.com/',
     summary:
-      'An official site for a Boston artist, built like a record sleeve: music, vision, merch, booking.',
-    note: 'A Boston rapper’s official site. Cold, loud, built like a record sleeve.',
+      'DUDJA’s home online for music, videos, merch and booking, with a look shaped around the artist’s sound.',
+    note: 'Music, merch and booking, all in one place.',
     stamp: 'Live',
     standfirst:
       'A musician’s site has one job in the first second: make you feel the record before you press play.',
