@@ -1,7 +1,7 @@
 /**
  * SIDE QUESTS — the things that are not client websites.
  *
- * Written from Raven's own list. Keep the copy honest: no invented dates,
+ * Written from Jesse's own list. Keep the copy honest: no invented dates,
  * links, metrics or users. `state` is deliberately conversational rather than a
  * fake status field, because most of these are "still running somewhere".
  */

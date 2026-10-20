@@ -121,7 +121,7 @@ function CaseStudyView({ project }: { project: Project }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   usePageMeta({
-    title: `${project.name} — ${project.category} | Raven`,
+    title: `${project.name} — ${project.category} | Jesse`,
     description: project.summary,
     path: `/work/${project.slug}`,
     image: `${site.url}${project.images.hero.src}`,

@@ -62,7 +62,7 @@ const ogBase = `
 
   <!-- type -->
   <g font-family="Segoe UI, Arial, sans-serif" fill="${INK}">
-    <text x="60" y="255" font-size="142" font-weight="800" letter-spacing="-8">RAVEN</text>
+    <text x="60" y="255" font-size="142" font-weight="800" letter-spacing="-8">JESSE</text>
     <text x="60" y="368" font-size="142" font-weight="800" letter-spacing="-8" fill="none" stroke="${INK}" stroke-opacity="0.55" stroke-width="1.5">MAKES</text>
   </g>
   <text x="60" y="492" font-family="Georgia, serif" font-style="italic" font-size="146" letter-spacing="-6" fill="${ACCENT}">things.</text>
@@ -106,13 +106,13 @@ const card = await sharp(Buffer.from(ogBase))
 console.log(`og-image.png ${card.width}x${card.height}`);
 
 /* ------------------------------------------------------------------ icons */
-// The favicons are the original Raven mark, committed as static files in
+// The favicons are the original raven mark, committed as static files in
 // public/ (favicon.png, favicon-32x32.png, favicon-192.png, apple-touch-icon.png).
 // Only the manifest is generated here so its colours stay in sync.
 
 const manifest = {
-  name: 'Raven — web developer',
-  short_name: 'Raven',
+  name: 'Jesse — web developer',
+  short_name: 'Jesse',
   description: 'Websites, booking systems, catalogues and brand. Lagos, Nigeria.',
   start_url: '/',
   display: 'standalone',

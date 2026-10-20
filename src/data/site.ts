@@ -1,5 +1,5 @@
 /**
- * RAVEN — identity, contact + navigation.
+ * JESSE — identity, contact + navigation.
  * Everything here is editable without touching a component.
  */
 
@@ -19,7 +19,7 @@ export interface NavItem {
 }
 
 export const site = {
-  brand: 'Raven',
+  brand: 'Jesse',
   tagline: 'Websites, bots, and other things.',
   role: 'Web developer',
   location: 'Lagos, Nigeria',
@@ -42,9 +42,9 @@ export const site = {
    * Placeholder origin — replace with the production domain before launch.
    */
   url: 'https://0xjave-dot.github.io/portfolio',
-  title: 'Raven — websites, bots and other things',
+  title: 'Jesse — websites, bots and other things',
   description:
-    'Raven makes websites, Telegram bots, browser games, Python market scripts and AI chat workflows — built end to end. React, TypeScript, Firebase, Paystack. Lagos, Nigeria.',
+    'Jesse makes websites, Telegram bots, browser games, Python market scripts and AI chat workflows — built end to end. React, TypeScript, Firebase, Paystack. Lagos, Nigeria.',
   github: 'https://github.com/0xjave-dot',
   socials: [
     { label: 'GitHub', href: 'https://github.com/0xjave-dot', handle: '@0xjave-dot' },

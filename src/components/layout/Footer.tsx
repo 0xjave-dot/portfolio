@@ -65,13 +65,13 @@ export function Footer() {
               type="button"
               onClick={() => scrollTo(0)}
               className={cn('group w-fit text-left transition-opacity duration-300', nearEnd ? 'opacity-100' : 'opacity-0')}
-              aria-label="RAVEN — back to top"
+              aria-label="JESSE — back to top"
               aria-hidden={nearEnd ? undefined : 'true'}
               tabIndex={nearEnd ? undefined : -1}
               data-cursor="Top"
             >
               <span className="block font-display text-[clamp(3.2rem,16vw,12rem)] font-medium leading-[0.76] tracking-[-0.06em] text-transparent transition-colors duration-700 ease-edge [-webkit-text-stroke:1px_rgb(var(--ink)/0.45)] group-hover:text-ink group-hover:[-webkit-text-stroke:1px_transparent]">
-                RAVEN
+                JESSE
               </span>
             </button>
             <img
@@ -99,7 +99,7 @@ export function Footer() {
                   loading="lazy"
                   className="h-5 w-5 rounded-[3px] object-cover ring-1 ring-line/20"
                 />
-                Raven <span className="font-mono text-[0.6rem] text-muted">— {site.tagline}</span>
+                Jesse <span className="font-mono text-[0.6rem] text-muted">— {site.tagline}</span>
               </span>
               <span className="label normal-case tracking-normal">
                 No templates were harmed. One bird was mildly inconvenienced.
@@ -168,7 +168,7 @@ export function Footer() {
               </span>
               Terminal
             </button>
-            <span className="label">© {year} Raven</span>
+            <span className="label">© {year} Jesse</span>
           </div>
         </div>
       </div>

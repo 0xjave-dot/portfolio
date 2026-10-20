@@ -15,7 +15,7 @@ const STATUS_LINES = [
 ];
 
 /**
- * ≤2.2s intro: counter runs 0 → 100, RAVEN wipes in behind a clip path, curtain
+ * ≤2.2s intro: counter runs 0 → 100, JESSE wipes in behind a clip path, curtain
  * lifts. Skippable by any key/click, skipped entirely for reduced motion, and
  * shown once per session.
  */
@@ -107,7 +107,7 @@ export function Preloader() {
           aria-hidden="true"
         >
           <div className="flex items-start justify-between">
-            <span className="label">Raven — specimen no. 042</span>
+            <span className="label">Jesse — specimen no. 042</span>
             <span className="label">Lagos, NG</span>
           </div>
 
@@ -119,7 +119,7 @@ export function Preloader() {
                 transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
               >
                 <span className="block font-display text-[19vw] font-medium leading-[0.76] tracking-[-0.06em]">
-                  RAVEN
+                  JESSE
                 </span>
               </motion.div>
             </div>

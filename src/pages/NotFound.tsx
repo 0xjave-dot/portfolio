@@ -6,7 +6,7 @@ import { MagneticButton } from '@/components/ui/MagneticButton';
 
 export default function NotFound() {
   usePageMeta({
-    title: '404 — wrong turn | Raven',
+    title: '404 — wrong turn | Jesse',
     description: 'That page does not exist. Head back to the work.',
     path: '/404',
   });

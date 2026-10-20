@@ -19,7 +19,7 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
       to="/"
       onClick={onClick}
       className="group flex items-center gap-2.5"
-      aria-label="Raven — home"
+      aria-label="Jesse — home"
       data-cursor="Home"
     >
       <img
@@ -29,7 +29,7 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
         height={birdArt.logo.height}
         className="h-8 w-8 rounded-[4px] object-cover ring-1 ring-line/20 transition-transform duration-500 group-hover:-rotate-3 sm:h-9 sm:w-9"
       />
-      <span className="font-display text-xl font-medium leading-none tracking-[-0.05em] sm:text-2xl">RAVEN</span>
+      <span className="font-display text-xl font-medium leading-none tracking-[-0.05em] sm:text-2xl">JESSE</span>
       <span className="mb-2 hidden font-mono text-[0.5rem] tracking-[0.1em] text-accentInk sm:inline">№42</span>
     </Link>
   );

@@ -168,13 +168,13 @@ export function Hero() {
 
           {/* headline */}
           <h1 className="relative z-10 font-display font-medium leading-[0.78] tracking-[-0.055em]">
-            <span className="sr-only">Hi, I'm Raven. I make stuff.</span>
+            <span className="sr-only">Hi, I'M JESSE. I make stuff.</span>
             <span aria-hidden="true">
               <Line ready={ready} delay={0.1} still={firstVisit}>
                 <span className="block text-[clamp(2.8rem,10vw,9rem)]">HI, I'M</span>
               </Line>
               <Line ready={ready} delay={0.2} still={firstVisit}>
-                <span className="outline-type block text-[clamp(2.8rem,10vw,9rem)]">RAVEN.</span>
+                <span className="outline-type block text-[clamp(2.8rem,10vw,9rem)]">JESSE.</span>
               </Line>
               <Line ready={ready} delay={0.3} still={firstVisit}>
                 <span className="block font-serif text-[clamp(2.8rem,9.5vw,8.5rem)] font-normal italic leading-[0.8] tracking-[-0.03em] text-accentInk">

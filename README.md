@@ -1,8 +1,8 @@
-# RAVEN — portfolio
+# Jesse — portfolio
 
 ![The Raven homepage](docs/screenshot.png)
 
-A portfolio for **Raven**, a web developer in Lagos who happens to be a bird. Built as a
+A portfolio for **Jesse**, a web developer in Lagos with a raven mascot. Built as a
 specimen record rather than a résumé: field notes, catalogue numbers, footnotes, a specimen
 sheet, and four live client sites presented as evidence.
 
@@ -140,7 +140,7 @@ After deploying, replace the placeholder origin in `src/data/site.ts`, `index.ht
 
 ## Design notes (and the bolder calls)
 
-- **The concept is a specimen record.** The site treats Raven like a field-study entry: catalogue
+- **The concept is a specimen record.** The site treats Jesse like a field-study entry: catalogue
   number, specimen sheet, figure captions, annotations, footnotes, "known bugs". It gives the
   page a voice that a stack of rounded cards cannot, and it lets the personality live in the
   margins without getting in the way of a client reading the work.
@@ -155,14 +155,14 @@ After deploying, replace the placeholder origin in `src/data/site.ts`, `index.ht
 - **No invented testimonials.** The testimony section says, in public, that nothing is on the
   record yet and shows redacted placeholder cards. Fabricating a quote and putting it in a
   client's mouth is a strange thing to do; the empty state is styled as intentional instead.
-- **Side quests get their own section.** Raven makes more than websites, but a client reading the
+- **Side quests get their own section.** Jesse makes more than websites, but a client reading the
   page needs the paid work first. The quests ledger sits directly under the case studies and is
   explicitly unpaid ("FOR THE LOVE OF THE GAME") so range reads as range, not as a service menu.
 - **No invented metrics.** Case-study "results" only contain facts observable from the live
   sites (product counts, locations, prices, published claims), and each page says where those
   numbers come from.
 - **The bird is the logo.** The old site's artwork is reused deliberately: the header mark is a
-  crop of the original raven portrait, and the favicon is the original Raven icon.
+  crop of the original raven portrait, and the favicon is the original raven icon.
 - **Terminal over Konami.** A `~` terminal fits a developer portfolio better than a cheat code,
   and it can actually answer questions (`work`, `contact`, `open fitables`).
 
@@ -203,7 +203,7 @@ work list (Vite SSR or Astro) so the first paint no longer waits on the bundle. 
 architecture, not a tweak, so it was left out of this build.
 
 
-## TODO for Raven
+## TODO for Jesse
 
 - [ ] **Domain** — replace `https://0xjave-dot.github.io/portfolio` in `src/data/site.ts`,
       `index.html` (canonical + OG), `public/robots.txt`, `public/sitemap.xml`.
@@ -255,5 +255,5 @@ portfolio/
 
 ## Credits
 
-Design and build: Raven. Type: Space Grotesk, Instrument Serif, Inter, JetBrains Mono (all
+Design and build: Jesse. Type: Space Grotesk, Instrument Serif, Inter, JetBrains Mono (all
 open-licensed, self-hosted). Client screenshots belong to their respective owners.

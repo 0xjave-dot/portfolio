@@ -15,7 +15,7 @@ interface Line {
 }
 
 const BANNER = [
-  'RAVEN // terminal — specimen no. 042',
+  'JESSE // terminal — specimen no. 042',
   'Type "help". Esc closes. "~" opens.',
 ];
 
@@ -100,7 +100,7 @@ export function Terminal() {
     (raw: string) => {
       const input = raw.trim();
       if (!input) return;
-      push([{ kind: 'input', text: `raven@nest:~$ ${input}` }]);
+      push([{ kind: 'input', text: `jesse@portfolio:~$ ${input}` }]);
 
       const [command, ...args] = input.toLowerCase().split(/\s+/);
       const argument = args[0];
@@ -162,7 +162,7 @@ export function Terminal() {
           break;
         case 'whoami':
           push([
-            { kind: 'output', text: 'Raven. Web developer. Corvid.' },
+            { kind: 'output', text: 'Jesse. Web developer. Corvid.' },
             { kind: 'output', text: 'Builds websites, booking systems, catalogues, brands.' },
             { kind: 'muted', text: 'Lagos, Nigeria. Awake.' },
           ]);
@@ -216,7 +216,7 @@ export function Terminal() {
                 <span className="h-2 w-2 rounded-full bg-[#FEBC2E]" />
                 <span className="h-2 w-2 rounded-full bg-[#28C840]" />
                 <span className="ml-3 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-white/40">
-                  raven@nest — zsh
+                  jesse@portfolio — zsh
                 </span>
               </div>
               <button
@@ -260,7 +260,7 @@ export function Terminal() {
                 setValue('');
               }}
             >
-              <span className="font-mono text-[0.72rem] text-accent">raven@nest:~$</span>
+              <span className="font-mono text-[0.72rem] text-accent">jesse@portfolio:~$</span>
               <input
                 ref={inputRef}
                 value={value}
