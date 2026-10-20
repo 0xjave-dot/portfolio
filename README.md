@@ -166,9 +166,8 @@ After deploying, replace the placeholder origin in `src/data/site.ts`, `index.ht
   explicitly unpaid ("FOR THE LOVE OF THE GAME") so range reads as range, not as a service menu.
 - **No invented metrics.** Case-study "results" only contain facts observable from the live
   sites (product counts, locations, prices, published claims), and each page says where those
-  numbers come from. Kingdom Comms is the test case for that rule: the live deployment was still
-  carrying seeded demo records at recon time, so the case study says so rather than implying a
-  congregation has been onboarded.
+  numbers come from. Kingdom Comms is the test case for that rule: the church has not onboarded
+  the congregation yet, so the case study says so rather than implying a congregation is live.
 - **The bird is the logo.** The old site's artwork is reused deliberately: the header mark is a
   crop of the original raven portrait, and the favicon is the original raven icon.
 - **Terminal over Konami.** A `~` terminal fits a developer portfolio better than a cheat code,

@@ -142,27 +142,45 @@ Not defects in the code as written — observations from the live deployment:
 3. **Member deletion lives in the wrong module.** The admin "Delete member" button calls
    `DELETE /api/admin/ministry-applications/members/:id`. It works and cascades correctly, but
    a member-deletion route filed under ministry applications will be missed by the next reader.
-4. **Three empty member records** (`dev-ozxrc6-dv43`, `dev-mn88b8-rpgl`, `dev-0y1n8c-k1wa`) —
-   device-auth shells with no name, phone or group memberships. They are the only rows that look
-   unfinished in the admin table and are safe to remove.
+4. **Deactivating a segment does not remove it from the Segments page.** `DELETE
+   /api/admin/groups/segments/:id` is a soft delete — it sets `active = false`. The audience
+   dropdown (`GET /api/admin/groups/audiences`) correctly filters on `active`, so a deactivated
+   segment can no longer be targeted, but `GET /api/admin/groups` does not filter, so the
+   Segments admin page still lists it. There is no hard delete anywhere in the API.
+5. **Three empty member records** (`dev-ozxrc6-dv43`, `dev-mn88b8-rpgl`, `dev-0y1n8c-k1wa`) —
+   device-auth shells with no name, phone or group memberships. They predate this work and are
+   the only rows in the admin table that look unfinished.
+6. **The floating Mixlr player overlaps page content.** On the member Units screen the
+   persistent player covers the "I want to serve!" call-to-action.
 
-## 6. Demo data seeded for the capture
+## 6. Demo data — created for the first capture, then removed
 
-The live database was empty of realistic content at recon time, so the following clearly-labelled
-demo records were created through the admin API so the screenshots show the system working:
+The first pass of screenshots needed realistic content, so the following was created through the
+admin API: five demo members (names suffixed `(demo)`, phones on the reserved `0800000000X`
+range), two segments (`Young Adults` automatic, `Service Volunteers` manual), two events with
+registration forms and bus-pickup logistics, and five draft campaigns.
 
-- 5 demo members — `Bola Adeyemi (demo)`, `Tunde Okafor (demo)`, `Chiamaka Nwosu (demo)`,
-  `Emeka Obi (demo)`, `Aisha Bello (demo)` — with centres, age groups, birthdays, join dates and
-  ministry/fellowship memberships.
-- 2 segments — `Young Adults` (automatic, age rule) and `Service Volunteers` (manual).
-- 2 events — `Mid-Week Prayer Service` (bus transport, Protocol unit) and
-  `Young Adults Conference 2026` (4-field registration form, capacity 150, waitlist, 3 bus
-  pickup points, 3 confirmed registrations with reference codes).
-- 5 draft campaigns targeting everyone, a ministry, a cell and a segment.
+**All of it has since been deleted**, at the client's request. The live deployment is back to
+its pre-recon state: 6 members (3 blank device shells, plus `Oghonetega Jesse Jave`, `Adeniyi`
+and `Ayomide Adegunle`), the 2 original `Test Event` records, the 21 Mixlr broadcasts and the
+`Test Event` notification, and the 4 system segments.
 
-No notification was ever sent by me — the five seeded campaigns were left as drafts. The seeded
-names carry a `(demo)` suffix and the phone numbers use the reserved `0800000000X` test range.
-The 21 broadcasts in §7 are the church's own, sent by the Mixlr automation before this recon.
+Two rows survive as tombstones: `Young Adults` and `Service Volunteers` are soft-deleted
+(`active = false`) because the API offers no hard delete — see finding 4 above. They no longer
+appear as audience options and cannot be targeted.
+
+The shipped screenshots were **re-captured after the cleanup**, so nothing in the portfolio
+references data that no longer exists:
+
+| Image | Surface | Captured from |
+|-------|---------|---------------|
+| `hero.webp` | Admin — message composer, audience set to a segment, live member preview | `gic-admin-static.onrender.com/messages/new` |
+| `full.webp` | Admin — Units: 14 units and fellowships with descriptions and counts | `gic-admin-static.onrender.com/ministries` |
+| `mobile.webp` | Member app — sermon player, next service, upcoming events | `gic-comms.onrender.com/home` |
+
+The member-app shot uses a device account created for the capture and deleted immediately
+afterwards; it shows the app's own default greeting ("Welcome home, Member") and the real centre
+the member selected, so no personal data appears in the image.
 
 ## 7. What the portfolio claims, and what backs it
 
@@ -178,8 +196,8 @@ The 21 broadcasts in §7 are the church's own, sent by the Mixlr automation befo
 | Written audit | `AUDIT.md` in the repository |
 | 21 broadcasts sent, 0 delivery failures | `/api/admin/notifications` — 21 `SENT` rows dated 4–20 Oct 2026, all `createdBy: system:mixlr`, every one `sentCount` = `recipientCount` and `failedCount` = 0 |
 
-**Not claimed:** members reached, or any adoption metric. The live member table was still carrying
-seeded demo records at recon time and the church has not onboarded the congregation, so the case
-study says exactly that instead of implying a congregation is on the platform. The one real
-production signal is the Mixlr announcement automation, which has posted the week's service
-recording to every registered device since 4 October 2026 without a delivery failure.
+**Not claimed:** members reached, or any adoption metric. The church has not onboarded the
+congregation, so the case study says exactly that instead of implying a congregation is on the
+platform. The one real production signal is the Mixlr announcement automation, which has posted
+the week's service recording to every registered device since 4 October 2026 without a delivery
+failure.

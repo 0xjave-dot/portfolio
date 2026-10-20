@@ -113,17 +113,17 @@
       "hero": {
         "width": 1440,
         "height": 900,
-        "bytes": 43686
+        "bytes": 43804
       },
       "full": {
         "width": 1200,
-        "height": 667,
-        "bytes": 42568
+        "height": 881,
+        "bytes": 44720
       },
       "mobile": {
         "width": 750,
-        "height": 1762,
-        "bytes": 81282
+        "height": 1966,
+        "bytes": 83010
       }
     },
     "probe": {
