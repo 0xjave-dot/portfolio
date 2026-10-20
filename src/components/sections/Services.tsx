@@ -51,8 +51,8 @@ export function Services() {
             lines={['What the', 'bird does.']}
           />
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink/60">
-            Five things, done properly. Most projects use two or three of them — you don’t have to
-            buy the whole menu.
+            Five things, done properly. Most projects use two or three of them — you don’t have to buy the
+            whole menu.
           </p>
           <p className="mt-6 max-w-[19rem] border-l border-accent/40 pl-4 font-mono text-[0.6rem] uppercase leading-relaxed tracking-[0.14em] text-muted">
             Fixed scope. Fixed price. Half up front. No retainer you can’t leave.

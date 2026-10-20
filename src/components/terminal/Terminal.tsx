@@ -21,8 +21,8 @@ const BANNER = [
 
 const HELP: Array<[string, string]> = [
   ['help', 'List commands'],
-  ['work', 'List the four live projects'],
-  ['open <slug>', 'Open a case study (zanori, apreeltree, fitables, dudja)'],
+  ['work', 'List the five live projects'],
+  ['open <slug>', 'Open a case study (gic, zanori, apreeltree, fitables, dudja)'],
   ['contact', 'Email, phone, WhatsApp'],
   ['socials', 'GitHub and the rest'],
   ['theme', 'Toggle light / dark'],
@@ -162,8 +162,8 @@ export function Terminal() {
           break;
         case 'whoami':
           push([
-            { kind: 'output', text: 'Jesse. Web developer. Corvid.' },
-            { kind: 'output', text: 'Builds websites, booking systems, catalogues, brands.' },
+            { kind: 'output', text: 'Jesse. Product engineer. Corvid.' },
+            { kind: 'output', text: 'Ships products: interface, API, database, notifications.' },
             { kind: 'muted', text: 'Lagos, Nigeria. Awake.' },
           ]);
           break;

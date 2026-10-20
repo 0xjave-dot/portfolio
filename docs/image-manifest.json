@@ -106,5 +106,32 @@
       "ink": "#111114",
       "_src": "1440x900"
     }
+  },
+  "gic": {
+    "slug": "gic",
+    "images": {
+      "hero": {
+        "width": 1440,
+        "height": 900,
+        "bytes": 43686
+      },
+      "full": {
+        "width": 1200,
+        "height": 667,
+        "bytes": 42568
+      },
+      "mobile": {
+        "width": 750,
+        "height": 1762,
+        "bytes": 81282
+      }
+    },
+    "probe": {
+      "surface": "#ffffff",
+      "accent": "#fffefe",
+      "page": "#f3f4f8",
+      "ink": "#4b4f60",
+      "_src": "1440x900"
+    }
   }
 }

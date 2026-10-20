@@ -20,8 +20,8 @@ export interface NavItem {
 
 export const site = {
   brand: 'Jesse',
-  tagline: 'Websites, bots, and other things.',
-  role: 'Web developer',
+  tagline: 'Websites, apps, and the systems behind them.',
+  role: 'Product engineer',
   location: 'Lagos, Nigeria',
   coords: '6.5244° N, 3.3792° E',
   timeZone: 'Africa/Lagos',
@@ -42,9 +42,9 @@ export const site = {
    * Placeholder origin — replace with the production domain before launch.
    */
   url: 'https://0xjave-dot.github.io/portfolio',
-  title: 'Jesse — websites, bots and other things',
+  title: 'Jesse — websites, apps and the systems behind them',
   description:
-    'Jesse makes websites, Telegram bots, browser games, Python market scripts and AI chat workflows — built end to end. React, TypeScript, Firebase, Paystack. Lagos, Nigeria.',
+    'Jesse designs and ships full products: front-end, backend, database and the unglamorous parts. React, TypeScript, Node, PostgreSQL, Firebase. Lagos, Nigeria.',
   github: 'https://github.com/0xjave-dot',
   socials: [
     { label: 'GitHub', href: 'https://github.com/0xjave-dot', handle: '@0xjave-dot' },

@@ -9,11 +9,11 @@ import { FigureCaption, Stamp } from '@/components/ui/Annotation';
 import { SplitText } from '@/components/ui/SplitText';
 
 const LEAD =
-  'I make things. Websites, mostly. The list keeps growing, and I stopped keeping count.';
+  'I build products. The whole thing — interface, API, database, and the parts nobody screenshots.';
 
 const BIO = [
   'I read the docs. I notice when a button is two pixels off, and I don’t stop until the form works at 360px. It’s the reason the spacing is right.',
-  `Just me, start to finish, your brand design, interface, code. No handoffs, no “circling back”, no bureaucracy. If something is broken I'll tell you it’s broken, (usually after I fix it, you won't even notice.)`,
+  `Just me, start to finish: your brand design, the interface, the schema, the API, the deploy. No handoffs, no “circling back”, no bureaucracy. If something is broken I'll tell you it’s broken, (usually after I fix it, you won't even notice.)`,
   `Off the clock, I'm a Lord of the Rings guy, I like Warhammer, zoology, anime (obviously), dogs, armoured tanks and combustion engines. I know why giraffes are like that. Ask me, I like telling.`,
 ];
 
@@ -23,7 +23,7 @@ const SPEC = [
   ['Habitat', 'Dark rooms, 2am, 47 open tabs'],
   ['Call', 'Low. Mostly swear words.'],
   ['Diet', 'Coffee, bugs, other people’s CSS'],
-  ['Also makes', 'Bots, games, market scripts, AI workflows'],
+  ['Also makes', 'Push notifications, bots, games, market scripts, AI workflows'],
   ['Social', 'Shy, unless you want to discuss the fall of Carthage.'],
 ];
 

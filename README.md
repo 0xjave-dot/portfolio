@@ -2,9 +2,9 @@
 
 ![The Raven homepage](docs/screenshot.png)
 
-A portfolio for **Jesse**, a web developer in Lagos with a raven mascot. Built as a
+A portfolio for **Jesse**, a product engineer in Lagos with a raven mascot. Built as a
 specimen record rather than a résumé: field notes, catalogue numbers, footnotes, a specimen
-sheet, and four live client sites presented as evidence.
+sheet, and five live projects presented as evidence.
 
 Everything on the page is editable from `src/data/*` — no component edits needed to change copy.
 
@@ -20,7 +20,7 @@ Everything on the page is editable from `src/data/*` — no component edits need
   sample exchange rendered as a terminal), browser trivia and rebus games, Python market scripts,
   the binary options script, the blog, and AI chat workflows. Each has a stack, a deadpan note and
   an honest status word ("Alive, mostly", "Retired", "Dabbling").
-- **Case studies** — one templated page at `/work/:slug` for each of the four projects: full-bleed
+- **Case studies** — one templated page at `/work/:slug` for each of the five projects: full-bleed
   hero in the client's own palette, meta row, overview / challenge / what I built / results,
   screenshot gallery with a lightbox, and a click-to-load live `<iframe>` preview with a graceful
   fallback for sites that block embedding.
@@ -33,17 +33,23 @@ Everything on the page is editable from `src/data/*` — no component edits need
 - Everything above degrades: `prefers-reduced-motion` disables Lenis, the pinned work sequence,
   parallax, the custom cursor and the preloader, and swaps motion for simple fades.
 
-### The four records
+### The five records
 
 | # | Project | What it is | Live |
 |---|---------|------------|------|
-| 01 | Zanori Spaces | Interior & exterior design gallery, custom domain | [zanorispaces.com](https://zanorispaces.com/) |
-| 02 | Apreeltree | Premium Nigerian food bulk export, B2B catalogue | [apreeltree.onrender.com](https://apreeltree.onrender.com/) |
-| 03 | Fitables Beauty Bar | Luxury spa booking across three Lagos locations | [fitables.onrender.com](https://fitables.onrender.com/) |
-| 04 | DUDJA | Official site for a Boston artist (music, vision, merch, booking) | [dudja.onrender.com](https://dudja.onrender.com/) |
+| 01 | Kingdom Comms | Church communications platform for Global Impact Church — member PWA, admin panel, targeting engine | [gic-admin-static.onrender.com](https://gic-admin-static.onrender.com/) |
+| 02 | Zanori Spaces | Interior & exterior design gallery, custom domain | [zanorispaces.com](https://zanorispaces.com/) |
+| 03 | Apreeltree | Premium Nigerian food bulk export, B2B catalogue | [apreeltree.onrender.com](https://apreeltree.onrender.com/) |
+| 04 | Fitables Beauty Bar | Luxury spa booking across three Lagos locations | [fitables.onrender.com](https://fitables.onrender.com/) |
+| 05 | DUDJA | Official site for a Boston artist (music, vision, merch, booking) | [dudja.onrender.com](https://dudja.onrender.com/) |
 
 Screenshots were captured from the live sites with headless Chrome, then compressed to WebP
 (≤1600px wide, q80) with `sharp`. See `docs/image-manifest.json` for dimensions.
+
+> **Kingdom Comms** is the flagship, and it is a different shape of project from the other four:
+> a three-service product (member PWA + admin panel + Hono/Postgres API) with a real data model,
+> push delivery, migrations and a written security audit. Its recon notes live in
+> `docs/gic-analysis.md`.
 
 ---
 
@@ -82,7 +88,7 @@ Node 20+ recommended (built on Node 22).
 | File | Controls |
 |------|----------|
 | `src/data/site.ts` | Name, email, phone, WhatsApp, socials, availability, SEO title/description, nav items |
-| `src/data/projects.ts` | The four case studies: copy, facts, palette, screenshot paths, live URLs |
+| `src/data/projects.ts` | The five case studies: copy, facts, palette, screenshot paths, live URLs |
 | `src/data/quests.ts` | Side quests (bots, games, scripts, blog) + the dreadnought sample exchange |
 | `src/data/services.ts` | The capabilities accordion |
 | `src/data/skills.ts` | Marquee items, tools grid, lifecycle steps, special interests, known bugs |
@@ -145,9 +151,9 @@ After deploying, replace the placeholder origin in `src/data/site.ts`, `index.ht
   page a voice that a stack of rounded cards cannot, and it lets the personality live in the
   margins without getting in the way of a client reading the work.
 - **Acid lime `#C6FF3D`** on near-black `#0A0A0B`, with a warm paper light theme. Lime holds up
-  against all four client palettes (brown interiors, cream export site, ivory spa, black artist
-  site) without colliding with any of them. A second accent, oxide `#FF5C2E`, is reserved for
-  stamps and errors so it never competes with the signature colour.
+  against all five client palettes (light lavender admin, brown interiors, cream export site, ivory
+  spa, black artist site) without colliding with any of them. A second accent, oxide `#FF5C2E`, is
+  reserved for stamps and errors so it never competes with the signature colour.
 - **Work is a pinned horizontal sequence** on desktop, and a plain vertical stack on mobile and
   for reduced-motion users. The switch is CSS-only (`.work-horizontal` / `.work-stack`) so React
   never unmounts a subtree that ScrollTrigger has re-parented — that combination used to throw
@@ -160,7 +166,9 @@ After deploying, replace the placeholder origin in `src/data/site.ts`, `index.ht
   explicitly unpaid ("FOR THE LOVE OF THE GAME") so range reads as range, not as a service menu.
 - **No invented metrics.** Case-study "results" only contain facts observable from the live
   sites (product counts, locations, prices, published claims), and each page says where those
-  numbers come from.
+  numbers come from. Kingdom Comms is the test case for that rule: the live deployment was still
+  carrying seeded demo records at recon time, so the case study says so rather than implying a
+  congregation has been onboarded.
 - **The bird is the logo.** The old site's artwork is reused deliberately: the header mark is a
   crop of the original raven portrait, and the favicon is the original raven icon.
 - **Terminal over Konami.** A `~` terminal fits a developer portfolio better than a cheat code,
@@ -248,7 +256,7 @@ portfolio/
     lib/                  utils, gsap, seo, intro, contexts
     pages/                Home, CaseStudy, NotFound
     styles/               fonts.css, index.css
-  docs/                   old-site-analysis.md, image-manifest.json, screenshot.png
+  docs/                   old-site-analysis.md, gic-analysis.md, image-manifest.json, screenshot.png
   scripts/                og-image.mjs, optimise-images.mjs
   render.yaml, vercel.json, .env.example
 ```

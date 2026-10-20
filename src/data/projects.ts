@@ -1,8 +1,9 @@
 /**
- * Case-study content for the four live projects.
+ * Case-study content for the five live projects.
  *
  * Facts below were observed directly from the live sites during recon
- * (screenshots in `public/projects/<slug>/`, notes in `docs/old-site-analysis.md`).
+ * (screenshots in `public/projects/<slug>/`, notes in `docs/old-site-analysis.md`
+ * and `docs/gic-analysis.md`).
  * Anything unverifiable is written as `{{TODO: …}}` rather than invented.
  */
 
@@ -24,7 +25,7 @@ export interface Project {
   name: string;
   shortName: string;
   category: string;
-  /** Year the build went live. All four were live and advertising 2026 at recon time. */
+  /** Year the build went live. All five were live and advertising 2026 at recon time. */
   year: string;
   client: string;
   role: string[];
@@ -59,8 +60,80 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'zanori',
+    slug: 'gic',
     index: '01',
+    name: 'Kingdom Comms',
+    shortName: 'Kingdom Comms',
+    category: 'Church communications platform',
+    year: '2026',
+    client: 'Global Impact Church (GIC) — Lagos, Abuja & diaspora',
+    role: ['Product design', 'Full-stack build', 'Backend & data model', 'Push infrastructure'],
+    stack: [
+      'React',
+      'TypeScript',
+      'Node',
+      'Hono',
+      'PostgreSQL',
+      'Drizzle ORM',
+      'Firebase Cloud Messaging',
+      'Cloudflare R2',
+    ],
+    liveUrl: 'https://gic-admin-static.onrender.com/',
+    summary:
+      'A free messaging platform that replaces SMS: push notifications to every member, targeted by who they actually are.',
+    note: '₦5 per SMS, times a few thousand members, equals eight messages a year. So I built the free one.',
+    stamp: 'In production',
+    standfirst:
+      'Churches do not have a communications problem. They have a maths problem — and the fix was to stop sending SMS at all.',
+    theme: { bg: '#F3F4F8', fg: '#171A2B', accent: '#4B20B5' },
+    images: {
+      hero: {
+        src: '/projects/gic/hero.webp',
+        width: 1440,
+        height: 900,
+        alt: 'Kingdom Comms message composer: a reminder titled “Mid-week service tonight”, audience set to the Young Adults segment, with a live preview of the push notification a member would receive',
+      },
+      full: {
+        src: '/projects/gic/full.webp',
+        width: 1200,
+        height: 667,
+        alt: 'Kingdom Comms member records: twelve members with centre, unit, fellowship and segment memberships, filtered by status, unit, fellowship, segment, age group and relationship status',
+      },
+      mobile: {
+        src: '/projects/gic/mobile.webp',
+        width: 750,
+        height: 1762,
+        alt: 'The GIC member app on a phone: welcome banner, the latest Mixlr sermon recording, the next service and upcoming events',
+      },
+    },
+    overview:
+      'Global Impact Church had five branches, a congregation in the thousands and one way to reach them: SMS, at about ₦5 a message. At that price the arithmetic is brutal — a handful of broadcasts a year, no detail, no images, no links. Kingdom Comms replaces that with a member app and an admin panel over a shared API. Members install a PWA and get push notifications; admins compose messages, pick exactly who receives them, and schedule them. A push notification costs the church nothing, so the thing that was rationed by money stops being rationed.',
+    challenge:
+      'The obvious version of this is a WhatsApp broadcast list, and it fails immediately: no targeting, no scheduling, no delivery record, no way to attach a flyer, and every message is read on a phone that may be out of data. The hard version is a system that knows who each member is — which branch they attend, their age group, their relationship status, which unit they serve in, which fellowship they belong to — and can therefore send one message to the exact people who need it. That meant a real data model, not a contact list: members, ministries, cells, segments, age groups, events, registrations and pickups all as first-class rows. It also meant a delivery channel that a church can afford indefinitely, and an onboarding path short enough that a congregation with mixed smartphones will actually complete it.',
+    built: [
+      'Three services over one API — a member PWA, the Kingdom Comms admin panel, and a Hono/Postgres backend — deployed separately on Render so a bad admin deploy cannot take the member app down.',
+      'A targeting engine with eight filters: gender, age group, relationship status, centre, membership status, joined-within-months, ministry and cell. Segments can be automatic (rule-based) or hand-picked, and the composer shows a live audience estimate before anything is sent.',
+      'An event manager with custom registration forms, capacity limits, waitlists, issued reference codes, and per-branch bus-pickup points with capacities and departure times.',
+      'Scheduled and immediate campaigns with five categories and a tap destination, plus a “preview as member” panel that renders the notification exactly as the phone will show it.',
+      'Attendance check-ins: an admin schedules a pulse for a service occurrence — “are you in church?” or “how was it?” — and members answer in person, online or not attending from the app.',
+      'A Mixlr integration so the week’s sermon recording plays inside the member app, and a service worker that caches the app shell so the app still opens without a network. The Mixlr feed is also an announcement channel: it posts the new recording to every member automatically, with a deep link into the recording.',
+      'Tenant-scoped Postgres with 26 Drizzle migrations, signed JWT sessions, Firebase custom claims for admin roles, device-based member sign-in and phone-based account recovery.',
+    ],
+    facts: [
+      { label: 'Surfaces', value: 'Member PWA · Admin panel · API' },
+      { label: 'Targeting', value: '8 filters · automatic + manual segments' },
+      { label: 'Branches served', value: '5 — Lagos (×4) & Abuja' },
+      { label: 'Data model', value: 'Postgres · 26 migrations · tenant-scoped' },
+      { label: 'Delivery', value: 'Firebase Cloud Messaging — no per-message cost' },
+      { label: 'Live broadcasts', value: '21 sent · 0 delivery failures' },
+      { label: 'Repository', value: '3 apps · 211 commits' },
+    ],
+    resultsNote:
+      'The Mixlr announcement automation has been running in production since 4 October 2026: 21 broadcasts sent, every one with zero delivery failures. Everything else on this page describes what the system can do rather than what it has done — the live member table was still carrying seeded demo records at recon time, and the church has not onboarded the congregation yet, so no adoption or reach figures are claimed. The SMS saving is the arithmetic the platform was built to solve: at ₦5 a message, a broadcast to a few thousand members costs more than most churches earn from a mid-week service.',
+  },
+  {
+    slug: 'zanori',
+    index: '02',
     name: 'Zanori Spaces',
     shortName: 'Zanori',
     category: 'Interior design gallery',
@@ -118,7 +191,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'apreeltree',
-    index: '02',
+    index: '03',
     name: 'Apreeltree',
     shortName: 'Apreeltree',
     category: 'B2B export platform',
@@ -176,7 +249,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'fitables',
-    index: '03',
+    index: '04',
     name: 'Fitables Beauty Bar',
     shortName: 'Fitables',
     category: 'Spa booking platform',
@@ -185,7 +258,8 @@ export const projects: Project[] = [
     role: ['UI/UX design', 'Booking flow', 'Full-stack build'],
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase'],
     liveUrl: 'https://fitables.onrender.com/',
-    summary: 'A luxury spa brand across three Lagos locations, with a full treatment menu and online booking.',
+    summary:
+      'A luxury spa brand across three Lagos locations, with a full treatment menu and online booking.',
     note: 'Three Lagos spas, thirty treatments, one booking flow. The favour that got out of hand.',
     stamp: 'First client',
     standfirst:
@@ -234,7 +308,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'dudja',
-    index: '04',
+    index: '05',
     name: 'DUDJA',
     shortName: 'DUDJA',
     category: 'Artist brand site',
@@ -243,7 +317,8 @@ export const projects: Project[] = [
     role: ['Art direction', 'Front-end build', 'Booking flow'],
     stack: ['React', 'TypeScript', 'Tailwind CSS'],
     liveUrl: 'https://dudja.onrender.com/',
-    summary: 'An official site for a Boston artist, built like a record sleeve: music, vision, merch, booking.',
+    summary:
+      'An official site for a Boston artist, built like a record sleeve: music, vision, merch, booking.',
     note: 'A Boston rapper’s official site. Cold, loud, built like a record sleeve.',
     stamp: 'Live',
     standfirst:
@@ -287,8 +362,7 @@ export const projects: Project[] = [
       { label: 'Routes', value: 'Music · Vision · Merch · Booking' },
       { label: 'Artist base', value: 'Boston, MA' },
     ],
-    resultsNote:
-      'Streaming numbers and sales were out of scope at recon time — nothing is claimed here.',
+    resultsNote: 'Streaming numbers and sales were out of scope at recon time — nothing is claimed here.',
   },
 ];
 

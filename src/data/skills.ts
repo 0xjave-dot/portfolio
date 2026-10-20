@@ -1,16 +1,18 @@
 /** The belt under the hero. Part skills, part warning label. */
 export const capabilities: string[] = [
-  'Websites',
-  'UI/UX',
+  'Product design',
   'React',
   'TypeScript',
+  'Node',
+  'PostgreSQL',
   'Firebase',
+  'Push notifications',
+  'PWA',
   'Telegram bots',
   'Browser games',
   'Python',
-  'Market scripts',
   'Automation',
-  'Ecommerce',
+  'API design',
   'No small talk',
 ];
 
@@ -42,8 +44,8 @@ export const processSteps: ProcessStep[] = [
     index: '03',
     stage: 'Hoard',
     title: 'Build',
-    body: 'Typed React, real data, real payments. A staging link from the first week, so there is no big reveal and no surprises at the end. You watch it happen; I go quiet and fix things.',
-    output: 'Staging build, content in, QA pass',
+    body: 'Typed React on the front, a real API and a real database behind it — schema, migrations, auth, queues, the lot. Real data, real payments, real push. A staging link from the first week, so there is no big reveal and no surprises at the end.',
+    output: 'Staging build, migrations, QA pass',
   },
   {
     index: '04',
@@ -51,6 +53,13 @@ export const processSteps: ProcessStep[] = [
     title: 'Launch',
     body: 'Domain, analytics, OG cards, sitemap, redirects, a performance pass, and a handover document written for a human. Then I hover for thirty days while the first real users arrive.',
     output: 'Live site, handover doc, 30-day cover',
+  },
+  {
+    index: '05',
+    stage: 'Mend',
+    title: 'Harden',
+    body: 'The part nobody photographs: I read the codebase looking for the thing that will embarrass us at 2am. On the church platform that turned up a device-auth takeover, a database dump committed to git and ten other problems — all fixed, all written down in a file you can read.',
+    output: 'Security pass, written audit, and a system that holds',
   },
 ];
 

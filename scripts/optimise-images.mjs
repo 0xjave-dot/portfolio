@@ -9,7 +9,8 @@
  *   SOURCE=C:/path/to/out node scripts/optimise-images.mjs
  */
 import sharp from 'sharp';
-import { mkdir, writeFile, stat } from 'node:fs/promises';
+import { mkdir, writeFile, stat, readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -18,7 +19,7 @@ const ROOT = path.resolve(__dirname, '..');
 const SOURCE = process.env.SOURCE || path.resolve(ROOT, '../recon/shots/out');
 const OUT = path.resolve(ROOT, 'public/projects');
 
-const SLUGS = ['zanori', 'apreeltree', 'fitables', 'dudja'];
+const SLUGS = ['zanori', 'apreeltree', 'fitables', 'dudja', 'gic'];
 
 /** Colour probe points, as fractions of the hero screenshot, per project. */
 const PROBES = {
@@ -45,6 +46,13 @@ const PROBES = {
     accent: [0.21, 0.836],
     page: [0.5, 0.02],
     ink: [0.9, 0.9],
+  },
+  // Kingdom Comms admin — light shell, indigo sidebar, purple actions.
+  gic: {
+    surface: [0.5, 0.02],
+    accent: [0.0437, 0.041],
+    page: [0.72, 0.3],
+    ink: [0.16, 0.108],
   },
 };
 
@@ -82,11 +90,29 @@ async function probe(file, points) {
 }
 
 await mkdir(OUT, { recursive: true });
+
+// Merge into the existing manifest so a partial re-capture (one slug only)
+// never wipes the entries for the projects it did not touch.
+const MANIFEST_PATH = path.join(ROOT, 'docs/image-manifest.json');
 const manifest = {};
+try {
+  const previous = JSON.parse(await readFile(MANIFEST_PATH, 'utf8'));
+  for (const [slug, entry] of Object.entries(previous)) manifest[slug] = entry;
+} catch {
+  // No previous manifest — start from scratch.
+}
 
 for (const slug of SLUGS) {
   const src = path.join(SOURCE, slug);
   const dest = path.join(OUT, slug);
+
+  // Nothing captured for this slug yet: keep whatever the manifest already
+  // says and leave the shipped WebP files alone.
+  if (!existsSync(path.join(src, 'hero.png'))) {
+    console.log(`skip ${slug} — no capture at ${src}`);
+    continue;
+  }
+
   await mkdir(dest, { recursive: true });
 
   const jobs = [
@@ -123,5 +149,5 @@ for (const slug of SLUGS) {
   manifest[slug] = entry;
 }
 
-await writeFile(path.join(ROOT, 'docs/image-manifest.json'), JSON.stringify(manifest, null, 2));
+await writeFile(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
 console.log('\nmanifest ->', path.join('docs', 'image-manifest.json'));

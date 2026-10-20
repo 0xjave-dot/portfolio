@@ -3,7 +3,7 @@ import { processSteps } from '@/data/skills';
 import { Reveal } from '@/components/ui/Reveal';
 import { SplitText } from '@/components/ui/SplitText';
 
-/** Four stages of a bird building a website, scrubbed horizontally by page scroll. */
+/** Five stages of a bird building a product, scrubbed horizontally by page scroll. */
 export function Process() {
   const pinRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -99,11 +99,11 @@ export function Process() {
               as="h2"
               id="process-title"
               className="mt-4 font-display text-[clamp(2.2rem,5vw,3.7rem)] font-medium leading-[0.95] tracking-[-0.045em]"
-              lines={['Forage. Nest.', 'Hoard. Fly.']}
+              lines={['Forage. Nest.', 'Hoard. Fly.', 'Then mend.']}
             />
           </div>
           <p className="col-span-12 max-w-md self-end text-sm leading-relaxed text-ink/60 lg:col-span-5 lg:col-start-8">
-            Four stages, no mystery. You see the build on a staging URL the whole way through, you own
+            Five stages, no mystery. You see the build on a staging URL the whole way through, you own
             everything at the end, and nobody says “circling back”.
           </p>
         </div>

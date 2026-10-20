@@ -178,7 +178,7 @@ function WorkStack() {
 /**
  * Selected work.
  *
- * The section pins at every screen size and four project panels travel
+ * The section pins at every screen size and five project panels travel
  * horizontally, scrubbed by vertical scroll position (GSAP + ScrollTrigger on
  * Lenis' ticker).
  *
@@ -311,7 +311,7 @@ export function Work() {
                 <div className="flex flex-col gap-4">
                   <span className="label">End of index</span>
                   <p className="font-display text-[clamp(1.8rem,3.4vw,3rem)] font-medium leading-[0.98] tracking-[-0.035em]">
-                    That’s all four — for now.
+                    That’s all {projects.length} — for now.
                   </p>
                   <p className="max-w-sm text-sm leading-relaxed text-ink/60">
                     New work lands here first. If you want yours next, the contact section is one scroll

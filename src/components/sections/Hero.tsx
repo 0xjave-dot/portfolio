@@ -217,8 +217,7 @@ export function Hero() {
               animate={firstVisit || reduced ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: EASE, delay: 0.6 }}
             >
-              Websites, mostly, but I like Telegram bots and market analysis and automated trading;
-              I have built a few systems around those as well.
+              I design and ship products
             </motion.p>
 
             <motion.div
@@ -255,7 +254,7 @@ export function Hero() {
       <div className="shell relative z-10 mt-8 w-full">
         <div className="flex flex-wrap items-end justify-between gap-4 border-t border-line/10 pt-3">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
-            <span className="label">Corvid / web developer</span>
+            <span className="label">Corvid / product engineer</span>
             <span className="label hidden sm:inline">Lagos → the internet</span>
             <span className="label text-ink">
               {time} <span className="text-muted">{offset}</span>
