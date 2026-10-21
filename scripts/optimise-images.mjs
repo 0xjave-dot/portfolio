@@ -1,15 +1,18 @@
 /**
  * Optimise the recon screenshots into the WebP set the site ships.
  *
- * Source: a folder of `<slug>/{hero,full,mobile}.png` captures.
- * Output: public/projects/<slug>/{hero,full,mobile}.webp  + docs/image-manifest.json
+ * Source: a folder of `<slug>/*.png` captures.
+ * Output: public/projects/<slug>/<name>.webp  + docs/image-manifest.json
+ *
+ * `hero`, `full` and `mobile` get their own width budgets; every other PNG in
+ * the folder is treated as a gallery shot and cut to 1200px wide.
  *
  * Usage:
  *   node scripts/optimise-images.mjs                 # SOURCE defaults to ../recon/shots/out
  *   SOURCE=C:/path/to/out node scripts/optimise-images.mjs
  */
 import sharp from 'sharp';
-import { mkdir, writeFile, stat, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, stat, readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -19,7 +22,12 @@ const ROOT = path.resolve(__dirname, '..');
 const SOURCE = process.env.SOURCE || path.resolve(ROOT, '../recon/shots/out');
 const OUT = path.resolve(ROOT, 'public/projects');
 
-const SLUGS = ['zanori', 'apreeltree', 'fitables', 'dudja', 'gic'];
+const SLUGS = ['gic', 'zanori', 'apreeltree', 'fitables', 'dudja'];
+
+/** Width budgets per well-known capture name. Anything else is a gallery shot. */
+const WIDTHS = { hero: 1440, full: 1200, mobile: 780 };
+const GALLERY_WIDTH = 1200;
+const MAX_HEIGHT = 11000;
 
 /** Colour probe points, as fractions of the hero screenshot, per project. */
 const PROBES = {
@@ -91,8 +99,8 @@ async function probe(file, points) {
 
 await mkdir(OUT, { recursive: true });
 
-// Merge into the existing manifest so a partial re-capture (one slug only)
-// never wipes the entries for the projects it did not touch.
+// Merge into the existing manifest so a partial re-capture (one slug, or one
+// gallery shot) never wipes the entries for the images it did not touch.
 const MANIFEST_PATH = path.join(ROOT, 'docs/image-manifest.json');
 const manifest = {};
 try {
@@ -106,44 +114,45 @@ for (const slug of SLUGS) {
   const src = path.join(SOURCE, slug);
   const dest = path.join(OUT, slug);
 
-  // Nothing captured for this slug yet: keep whatever the manifest already
-  // says and leave the shipped WebP files alone.
-  if (!existsSync(path.join(src, 'hero.png'))) {
-    console.log(`skip ${slug} — no capture at ${src}`);
+  if (!existsSync(src)) {
+    console.log(`skip ${slug} — no capture folder at ${src}`);
+    continue;
+  }
+
+  const files = (await readdir(src)).filter((file) => file.toLowerCase().endsWith('.png'));
+  if (!files.length) {
+    console.log(`skip ${slug} — no PNG captures in ${src}`);
     continue;
   }
 
   await mkdir(dest, { recursive: true });
+  const entry = { slug, images: { ...(manifest[slug]?.images || {}) } };
 
-  const jobs = [
-    { name: 'hero', width: 1440, height: 900, fit: 'inside' },
-    { name: 'full', width: 1200, height: 11000, fit: 'inside' },
-    { name: 'mobile', width: 780, height: 4000, fit: 'inside' },
-  ];
-
-  const entry = { slug, images: {} };
-  for (const job of jobs) {
-    const input = path.join(src, `${job.name}.png`);
-    const output = path.join(dest, `${job.name}.webp`);
+  for (const file of files) {
+    const name = path.basename(file, '.png');
+    const width = WIDTHS[name] ?? GALLERY_WIDTH;
+    const input = path.join(src, file);
+    const output = path.join(dest, `${name}.webp`);
     try {
       const info = await sharp(input)
-        .resize({ width: job.width, height: job.height, fit: job.fit, withoutEnlargement: true })
+        .resize({ width, height: MAX_HEIGHT, fit: 'inside', withoutEnlargement: true })
         .webp({ quality: 80, effort: 6, smartSubsample: true })
         .toFile(output);
       const bytes = (await stat(output)).size;
-      entry.images[job.name] = { width: info.width, height: info.height, bytes };
-      console.log(`${slug}/${job.name}.webp  ${info.width}x${info.height}  ${Math.round(bytes / 1024)}KB`);
+      entry.images[name] = { width: info.width, height: info.height, bytes };
+      console.log(`${slug}/${name}.webp  ${info.width}x${info.height}  ${Math.round(bytes / 1024)}KB`);
     } catch (error) {
-      console.error(`FAILED ${slug}/${job.name}: ${error.message}`);
-      entry.images[job.name] = null;
+      console.error(`FAILED ${slug}/${name}: ${error.message}`);
     }
   }
 
-  try {
-    entry.probe = await probe(path.join(src, 'hero.png'), PROBES[slug]);
-    console.log(`${slug} probe`, entry.probe);
-  } catch (error) {
-    console.error(`probe failed for ${slug}: ${error.message}`);
+  if (existsSync(path.join(src, 'hero.png')) && PROBES[slug]) {
+    try {
+      entry.probe = await probe(path.join(src, 'hero.png'), PROBES[slug]);
+      console.log(`${slug} probe`, entry.probe);
+    } catch (error) {
+      console.error(`probe failed for ${slug}: ${error.message}`);
+    }
   }
 
   manifest[slug] = entry;

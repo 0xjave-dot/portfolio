@@ -12,6 +12,8 @@ export interface ProjectImage {
   width: number;
   height: number;
   alt: string;
+  /** Shown under the image in the lightbox. */
+  caption?: string;
 }
 
 export interface ProjectFact {
@@ -50,6 +52,15 @@ export interface Project {
     full: ProjectImage;
     mobile: ProjectImage;
   };
+  /**
+   * Extra views of the project beyond the three set-pieces. Every entry opens
+   * in the lightbox. Observed from the live site during recon.
+   */
+  gallery: ProjectImage[];
+  /** What was actually handed over at the end. */
+  deliverables: string[];
+  /** Technical detail observed on the live deployment. */
+  tech: ProjectFact[];
   overview: string;
   challenge: string;
   built: string[];
@@ -106,6 +117,52 @@ export const projects: Project[] = [
         alt: 'The GIC member app on a phone: the latest Mixlr sermon recording with a player, the next service at The Goodland, upcoming events and a profile-completion prompt',
       },
     },
+    gallery: [
+      {
+        src: '/projects/gic/admin-segments.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Kingdom Comms Segments panel: audience classifications with automatic and manual types, rule counts and live member counts',
+        caption: 'Segments — automatic rules and hand-picked audiences, side by side',
+      },
+      {
+        src: '/projects/gic/admin-messages.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Kingdom Comms Messages panel: the sent broadcast history, each row showing the campaign title and delivery count',
+        caption: 'Campaign history — every broadcast, with its audience and delivery count',
+      },
+      {
+        src: '/projects/gic/member-units.webp',
+        width: 780,
+        height: 1688,
+        alt: 'The GIC member app, Units tab: a “you haven’t joined a unit yet” state with an “I want to serve!” call to action',
+        caption: 'Member app — browsing and applying to serve in a unit',
+      },
+      {
+        src: '/projects/gic/member-events.webp',
+        width: 780,
+        height: 1688,
+        alt: 'The GIC member app, Events tab: upcoming services with dates, times and the centre the member attends',
+        caption: 'Member app — upcoming services and events',
+      },
+    ],
+    deliverables: [
+      'A member PWA — offline app shell, push notifications, service times and sermon playback',
+      'An admin panel covering members, attendance, units, segments, events, campaigns and an activity log',
+      'A Hono API with signed JWT sessions, Firebase-claim admin roles and 26 database migrations',
+      'A targeting engine — eight filters, automatic rule-based segments and hand-picked audiences',
+      'An event manager with registration forms, capacity limits, waitlists and per-branch bus logistics',
+      'A written security audit with a prioritised fix list, and the fixes themselves',
+    ],
+    tech: [
+      { label: 'Backend', value: 'Hono on Node · PostgreSQL · Drizzle ORM' },
+      { label: 'Deploy', value: 'Three services on Render + managed Postgres' },
+      { label: 'Delivery', value: 'Firebase Cloud Messaging · media on Cloudflare R2' },
+      { label: 'Data model', value: 'Tenant-scoped: members, ministries, cells, segments, events' },
+      { label: 'Member app', value: 'React PWA · service worker · live Mixlr feed' },
+      { label: 'Tests', value: '35 backend · 24 member · 6 admin' },
+    ],
     overview:
       'Global Impact Church had five branches, a congregation in the thousands and one way to reach them: SMS, at about ₦5 a message. At that price the arithmetic is brutal — a handful of broadcasts a year, no detail, no images, no links. Kingdom Comms replaces that with a member app and an admin panel over a shared API. Members install a PWA and get push notifications; admins compose messages, pick exactly who receives them, and schedule them. A push notification costs the church nothing, so the thing that was rationed by money stops being rationed.',
     challenge:
@@ -170,6 +227,44 @@ export const projects: Project[] = [
         alt: 'Zanori Spaces on a mobile viewport',
       },
     },
+    gallery: [
+      {
+        src: '/projects/zanori/work.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Zanori Spaces: selected case studies — interior projects presented with render sheets',
+        caption: 'Selected case studies',
+      },
+      {
+        src: '/projects/zanori/services.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Zanori Spaces services page: the interior and exterior design offerings',
+        caption: 'Services — what the studio actually does',
+      },
+      {
+        src: '/projects/zanori/shop.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Zanori Spaces shop: furniture and design pieces listed for sale',
+        caption: 'Shop — furniture and design pieces',
+      },
+    ],
+    deliverables: [
+      'Brand identity — wordmark, type and colour system, favicon that reads at 16px',
+      'A gallery-first homepage built around a full-bleed image hero',
+      'Services catalogue, featured projects and a founder statement',
+      'Shop and account area wired to a live catalogue',
+      'Catalogue state that persists in Firestore and falls back to a local cache',
+    ],
+    tech: [
+      { label: 'Stack', value: 'React · TypeScript · Tailwind CSS · Vite' },
+      { label: 'Catalogue', value: 'Firestore, mirrored into localStorage' },
+      { label: 'Type', value: 'Playfair Display' },
+      { label: 'Motion', value: 'Framer Motion throughout' },
+      { label: 'Imagery', value: '16 images, 9 lazy-loaded' },
+      { label: 'Hosting', value: 'Custom domain' },
+    ],
     overview:
       'Zanori Spaces is an interior and exterior design studio in Lagos. The site is a gallery first: a full-bleed interior hero, a services catalogue covering design, consultation, styling, furniture and 3D visualisation, a founder statement, featured projects, and a shop with an account area. Everything sits under one warm editorial identity — espresso brown, cream and crimson.',
     challenge:
@@ -228,6 +323,51 @@ export const projects: Project[] = [
         alt: 'Apreeltree on a mobile viewport',
       },
     },
+    gallery: [
+      {
+        src: '/projects/apreeltree/products.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Apreeltree catalogue: “Premium Nigerian Pantry” with grades and starting prices for each product',
+        caption: 'The catalogue — 23 products, graded and priced',
+      },
+      {
+        src: '/projects/apreeltree/product.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Apreeltree product page for Ofada Rice, with the product story and related shipments',
+        caption: 'Product page — the story, the grade, the related shipments',
+      },
+      {
+        src: '/projects/apreeltree/shipping.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Apreeltree shipping page: air freight against ocean freight, customs paperwork and export packaging',
+        caption: 'Shipping — freight, customs and packaging',
+      },
+      {
+        src: '/projects/apreeltree/quote.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Apreeltree bulk quote request form',
+        caption: 'Quote request — the one conversion that matters',
+      },
+    ],
+    deliverables: [
+      'Trust-first storefront with the proof placed directly under the headline',
+      'A 23-product catalogue grouped by category, with grades and starting prices',
+      'Product detail pages with the product story and related shipments',
+      'A four-step export logistics explainer covering freight, customs and packaging',
+      'A WhatsApp-first quote path that persists the enquiry',
+    ],
+    tech: [
+      { label: 'Stack', value: 'React · TypeScript · Tailwind CSS · Vite' },
+      { label: 'Type', value: 'Fraunces · Plus Jakarta Sans' },
+      { label: 'Catalogue', value: '23 SKUs · grade and starting price each' },
+      { label: 'Quote flow', value: 'Enquiry saved client-side, then handed to WhatsApp' },
+      { label: 'Imagery', value: '8 images, 6 lazy-loaded' },
+      { label: 'Hosting', value: 'Render static site' },
+    ],
     overview:
       'A B2B export storefront for Nigerian staples — ofada rice, honey beans, egusi, ogbono, crayfish and smoked catfish — sold in bulk to buyers in Europe and the USA. The site carries a 23-product catalogue with grades and starting prices, an export logistics explainer, trust marks, and a WhatsApp-first quote path.',
     challenge:
@@ -287,6 +427,44 @@ export const projects: Project[] = [
         alt: 'Fitables Beauty Bar on a mobile viewport',
       },
     },
+    gallery: [
+      {
+        src: '/projects/fitables/pricing.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Fitables Beauty Bar: searchable treatment menu with category tabs and naira prices for each service',
+        caption: 'Services & pricing — searchable, categorised, priced',
+      },
+      {
+        src: '/projects/fitables/therapists.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Fitables Beauty Bar: therapist profiles for the spa team',
+        caption: 'Therapists — the people behind the treatment',
+      },
+      {
+        src: '/projects/fitables/locations.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Fitables Beauty Bar: locations and opening hours for Lekki, Gbagada and Surulere',
+        caption: 'Three branches, three sets of hours',
+      },
+    ],
+    deliverables: [
+      'Ivory and deep-green identity with Cormorant Garamond display type',
+      'A searchable treatment menu with prices, durations and categories',
+      'Booking session flow, gift-a-session path and Google sign-in',
+      'Therapist profiles plus per-branch locations and hours',
+      'Client review submission and a canvas petal animation across the hero',
+    ],
+    tech: [
+      { label: 'Stack', value: 'React · TypeScript · Tailwind CSS · Firebase' },
+      { label: 'Type', value: 'Cormorant Garamond · Montserrat · JetBrains Mono' },
+      { label: 'Catalogue', value: '30+ treatments across 5 categories' },
+      { label: 'Animation', value: 'Canvas petal field on the hero' },
+      { label: 'Auth', value: 'Firebase, with Google sign-in' },
+      { label: 'Locations', value: 'Lekki Phase I · Gbagada · Surulere' },
+    ],
     overview:
       'A luxury spa, salon and skincare brand with locations in Lekki Phase I, Gbagada and Surulere. The site carries the full treatment menu — massages, facials, exfoliation, waxing, pedicures — with prices, durations and descriptions, plus booking, gifting a session, therapist profiles, locations and hours.',
     challenge:
@@ -346,6 +524,51 @@ export const projects: Project[] = [
         alt: 'DUDJA official site on a mobile viewport',
       },
     },
+    gallery: [
+      {
+        src: '/projects/dudja/music.webp',
+        width: 1200,
+        height: 750,
+        alt: 'DUDJA music section: the discography with live Spotify and SoundCloud embeds and streaming platform links',
+        caption: 'Music — the discography, embedded live',
+      },
+      {
+        src: '/projects/dudja/vision.webp',
+        width: 1200,
+        height: 750,
+        alt: 'DUDJA vision section: the artist manifesto laid out as an editorial spread',
+        caption: 'Vision — the manifesto and the dossier',
+      },
+      {
+        src: '/projects/dudja/merch.webp',
+        width: 1200,
+        height: 750,
+        alt: 'DUDJA merch storefront',
+        caption: 'Merch — the storefront',
+      },
+      {
+        src: '/projects/dudja/booking.webp',
+        width: 1200,
+        height: 750,
+        alt: 'DUDJA booking inquiry form with name, email, inquiry type and message fields',
+        caption: 'Booking — a real inquiry form, not a mailto link',
+      },
+    ],
+    deliverables: [
+      'Record-sleeve art direction — bone and vermilion on near-black',
+      'A discography with live Spotify and SoundCloud embeds',
+      'A lyric console presenting a timed transcript like studio hardware',
+      'Vision manifesto and artist dossier laid out as an editorial spread',
+      'Merch storefront and a booking inquiry form',
+    ],
+    tech: [
+      { label: 'Stack', value: 'React · TypeScript · Tailwind CSS · Vite' },
+      { label: 'Type', value: 'Bebas Neue · DM Sans · Space Mono' },
+      { label: 'Releases', value: '4 singles and albums, all 2026' },
+      { label: 'Streaming', value: 'Spotify · Apple Music · SoundCloud · Tidal · YouTube' },
+      { label: 'Monitoring', value: 'Sentry error reporting' },
+      { label: 'Hosting', value: 'Render static site' },
+    ],
     overview:
       'The official site for DUDJA, a Boston-based rapper, producer and singer-songwriter making what the site calls “sonic brutalism” — alternative, electronic and soul, recorded cold and underground. The site runs music, vision, merch and booking as four clear routes, with a lyric console and streaming everywhere.',
     challenge:

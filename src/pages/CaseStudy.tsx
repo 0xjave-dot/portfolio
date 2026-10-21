@@ -6,10 +6,12 @@ import { getNextProject, getProject, projects } from '@/data/projects';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { Lightbox } from '@/components/ui/Lightbox';
+import type { LightboxImage } from '@/components/ui/Lightbox';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Parallax } from '@/components/motion/Parallax';
 import { Reveal } from '@/components/ui/Reveal';
 import { site } from '@/data/site';
+import { cn } from '@/lib/utils';
 import NotFound from './NotFound';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -128,9 +130,10 @@ function CaseStudyView({ project }: { project: Project }) {
     type: 'article',
   });
 
-  const gallery = [
-    { ...project.images.full, caption: `${project.name} — full page, desktop 1440px` },
+  const gallery: LightboxImage[] = [
+    { ...project.images.full, caption: `${project.name} — full page, desktop` },
     { ...project.images.mobile, caption: `${project.name} — mobile 390px` },
+    ...project.gallery,
   ];
 
   return (
@@ -260,7 +263,53 @@ function CaseStudyView({ project }: { project: Project }) {
 
       <div className="shell grid grid-cols-12 gap-y-12 border-t border-line/10 py-16 lg:gap-x-12 lg:py-20">
         <div className="col-span-12 lg:col-span-3">
-          <SectionTitle index="04">Results</SectionTitle>
+          <SectionTitle index="04">What I handed over</SectionTitle>
+          <p className="mt-4 max-w-[16rem] text-sm leading-relaxed text-ink/60">
+            The deliverables at the end of the build — not the marketing version of them.
+          </p>
+        </div>
+        <div className="col-span-12 lg:col-span-8 lg:col-start-5">
+          <ol className="flex flex-col">
+            {project.deliverables.map((item, index) => (
+              <Reveal key={item} delay={index * 0.04}>
+                <li className="flex gap-5 border-b border-line/10 py-5 first:pt-0 last:border-b-0">
+                  <span className="mt-1 font-mono text-[0.6rem] text-muted">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <p className="text-sm leading-relaxed text-ink/80 sm:text-base">{item}</p>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <div className="shell grid grid-cols-12 gap-y-12 border-t border-line/10 py-16 lg:gap-x-12 lg:py-20">
+        <div className="col-span-12 lg:col-span-3">
+          <SectionTitle index="05">Under the hood</SectionTitle>
+          <p className="mt-4 max-w-[16rem] text-sm leading-relaxed text-ink/60">
+            Read off the live deployment, not from a pitch deck.
+          </p>
+        </div>
+        <div className="col-span-12 lg:col-span-8 lg:col-start-5">
+          <dl className="grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2">
+            {project.tech.map((item, index) => (
+              <Reveal key={item.label} delay={index * 0.04}>
+                <div className="flex flex-col gap-1.5 border-t border-line/15 pt-3">
+                  <dt className="label">{item.label}</dt>
+                  <dd className="font-display text-lg font-medium leading-snug tracking-[-0.01em] sm:text-xl">
+                    {item.value}
+                  </dd>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div className="shell grid grid-cols-12 gap-y-12 border-t border-line/10 py-16 lg:gap-x-12 lg:py-20">
+        <div className="col-span-12 lg:col-span-3">
+          <SectionTitle index="06">Results</SectionTitle>
         </div>
         <div className="col-span-12 flex flex-col gap-8 lg:col-span-8 lg:col-start-5">
           <dl className="grid grid-cols-2 gap-x-6 gap-y-8">
@@ -284,46 +333,45 @@ function CaseStudyView({ project }: { project: Project }) {
       {/* gallery */}
       <div className="shell border-t border-line/10 py-16 lg:py-20">
         <div className="flex items-baseline justify-between gap-4">
-          <SectionTitle index="05">Screens</SectionTitle>
-          <span className="label hidden sm:block">Click to enlarge</span>
+          <SectionTitle index="07">Screens</SectionTitle>
+          <span className="label hidden sm:block">
+            {gallery.length} captures · click to enlarge
+          </span>
         </div>
         <div className="mt-8 grid grid-cols-12 gap-5">
-          <button
-            type="button"
-            onClick={() => setLightbox(0)}
-            className="group col-span-12 overflow-hidden border border-line/15 bg-surface text-left sm:col-span-8"
-            data-cursor="Open"
-            aria-label={`Open ${project.name} full-page screenshot`}
-          >
-            <div className="max-h-[34rem] overflow-hidden">
-              <img
-                src={project.images.full.src}
-                alt={project.images.full.alt}
-                width={project.images.full.width}
-                height={project.images.full.height}
-                loading="lazy"
-                decoding="async"
-                className="w-full object-cover object-top transition-transform duration-[900ms] ease-edge group-hover:scale-[1.02]"
-              />
-            </div>
-          </button>
-          <button
-            type="button"
-            onClick={() => setLightbox(1)}
-            className="group col-span-6 overflow-hidden border border-line/15 bg-surface sm:col-span-4"
-            data-cursor="Open"
-            aria-label={`Open ${project.name} mobile screenshot`}
-          >
-            <img
-              src={project.images.mobile.src}
-              alt={project.images.mobile.alt}
-              width={project.images.mobile.width}
-              height={project.images.mobile.height}
-              loading="lazy"
-              decoding="async"
-              className="w-full transition-transform duration-[900ms] ease-edge group-hover:scale-[1.02]"
-            />
-          </button>
+          {gallery.map((image, index) => (
+            <button
+              key={image.src}
+              type="button"
+              onClick={() => setLightbox(index)}
+              className={cn(
+                'group overflow-hidden border border-line/15 bg-surface text-left',
+                index === 0 ? 'col-span-12 lg:col-span-8' : 'col-span-6 lg:col-span-4',
+              )}
+              data-cursor="Open"
+              aria-label={`Open ${image.alt}`}
+            >
+              <div className={cn('overflow-hidden', index === 0 && 'max-h-[34rem]')}>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  loading="lazy"
+                  decoding="async"
+                  className={cn(
+                    'w-full transition-transform duration-[900ms] ease-edge group-hover:scale-[1.02]',
+                    index === 0 && 'object-cover object-top',
+                  )}
+                />
+              </div>
+              {image.caption ? (
+                <span className="block border-t border-line/10 px-4 py-2.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-muted">
+                  {image.caption}
+                </span>
+              ) : null}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -331,7 +379,7 @@ function CaseStudyView({ project }: { project: Project }) {
       <div className="shell border-t border-line/10 py-16 lg:py-20">
         <div className="grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-3">
-            <SectionTitle index="06">In the wild</SectionTitle>
+            <SectionTitle index="08">In the wild</SectionTitle>
             <p className="mt-4 max-w-[16rem] text-sm leading-relaxed text-ink/60">
               The site is live and unedited. Load it here, or open it in its own tab.
             </p>

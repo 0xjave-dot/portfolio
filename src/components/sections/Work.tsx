@@ -33,12 +33,14 @@ function BrowserFrame({ project, className }: { project: Project; className?: st
   }, [isInView]);
 
   return (
-    <div
+    <Link
+      to={`/work/${project.slug}`}
       className={cn(
-        'browser-chrome group/frame transition-colors duration-500 hover:border-line/30',
+        'browser-chrome group/frame block transition-colors duration-500 hover:border-line/30',
         className,
       )}
-      data-cursor="View"
+      data-cursor="Open"
+      aria-label={`Open the ${project.name} case study`}
     >
       <div className="flex items-center gap-2 border-b border-line/10 bg-surface/80 px-3 py-2">
         <span className="flex gap-1" aria-hidden="true">
@@ -48,6 +50,9 @@ function BrowserFrame({ project, className }: { project: Project; className?: st
         </span>
         <span className="ml-2 truncate rounded-full bg-paper/60 px-2.5 py-0.5 font-mono text-[0.55rem] tracking-[0.08em] text-muted">
           {host}
+        </span>
+        <span className="ml-auto hidden items-center gap-1 font-mono text-[0.55rem] uppercase tracking-[0.16em] text-accentInk opacity-0 transition-opacity duration-300 group-hover/frame:opacity-100 sm:inline-flex">
+          Open case study <span aria-hidden="true">→</span>
         </span>
       </div>
       <div
@@ -67,7 +72,7 @@ function BrowserFrame({ project, className }: { project: Project; className?: st
           )}
         />
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -135,7 +140,13 @@ function WorkPanel({ project }: { project: Project }) {
         <div className="order-2 col-span-12 flex flex-col gap-3 sm:gap-4 lg:order-1 lg:col-span-4 lg:gap-5">
           <PanelMeta project={project} />
           <h3 className="font-display text-[clamp(1.7rem,7vw,3.6rem)] font-medium leading-[0.94] tracking-[-0.04em]">
-            {project.name}
+            <Link
+              to={`/work/${project.slug}`}
+              className="transition-colors hover:text-accentInk"
+              data-cursor="Open"
+            >
+              {project.name}
+            </Link>
           </h3>
           <p className="max-w-sm font-serif text-[clamp(0.95rem,3.8vw,1.3rem)] italic leading-snug text-ink/80">
             {project.note}
@@ -162,7 +173,13 @@ function WorkStack() {
         <article key={project.slug} className="flex flex-col gap-5">
           <PanelMeta project={project} />
           <h3 className="font-display text-[clamp(2.2rem,9vw,3.4rem)] font-medium leading-[0.92] tracking-[-0.04em]">
-            {project.name}
+            <Link
+              to={`/work/${project.slug}`}
+              className="transition-colors hover:text-accentInk"
+              data-cursor="Open"
+            >
+              {project.name}
+            </Link>
           </h3>
           <BrowserFrame project={project} />
           <p className="font-serif text-base italic leading-snug text-ink/80">{project.note}</p>
