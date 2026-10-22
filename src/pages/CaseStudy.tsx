@@ -132,8 +132,6 @@ function CaseStudyView({ project }: { project: Project }) {
 
   const gallery: LightboxImage[] = [
     { ...project.images.full, caption: `${project.name} — full page, desktop` },
-    { ...project.images.mobile, caption: `${project.name} — mobile 390px` },
-    ...project.gallery,
   ];
 
   return (
@@ -335,7 +333,7 @@ function CaseStudyView({ project }: { project: Project }) {
         <div className="flex items-baseline justify-between gap-4">
           <SectionTitle index="07">Screens</SectionTitle>
           <span className="label hidden sm:block">
-            {gallery.length} captures · click to enlarge
+            {gallery.length} capture · click to enlarge
           </span>
         </div>
         <div className="mt-8 grid grid-cols-12 gap-5">
