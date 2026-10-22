@@ -83,7 +83,7 @@ export function Cursor() {
   if (!enabled) return null;
 
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[100] hidden lg:block">
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[100]">
       <div
         ref={dotRef}
         className="absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-accent transition-opacity duration-200"
