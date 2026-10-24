@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
@@ -62,12 +63,9 @@ export function Cursor() {
 
     const onDown = () => setPressed(true);
     const onUp = () => setPressed(false);
-    const onLeave = () => setVisible(false);
-
     window.addEventListener('pointermove', onMove, { passive: true });
     window.addEventListener('pointerdown', onDown);
     window.addEventListener('pointerup', onUp);
-    document.addEventListener('pointerleave', onLeave);
     frame = requestAnimationFrame(loop);
 
     return () => {
@@ -75,15 +73,14 @@ export function Cursor() {
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerdown', onDown);
       window.removeEventListener('pointerup', onUp);
-      document.removeEventListener('pointerleave', onLeave);
       document.documentElement.classList.remove('cursor-none');
     };
   }, [enabled]);
 
   if (!enabled) return null;
 
-  return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[100]">
+  return createPortal(
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[9999]">
       <div
         ref={dotRef}
         className="absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-accent transition-opacity duration-200"
@@ -107,6 +104,7 @@ export function Cursor() {
           {label}
         </span>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

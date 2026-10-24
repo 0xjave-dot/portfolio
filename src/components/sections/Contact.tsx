@@ -12,7 +12,6 @@ import { Toast } from '@/components/ui/Toast';
 import { cn } from '@/lib/utils';
 
 const PROJECT_TYPES = ['Website', 'Web app', 'Booking system', 'Ecommerce', 'Brand + site', 'Something else'] as const;
-const DELIVERY_OPTIONS = ['WhatsApp', 'Email'] as const;
 const BUDGETS = ['Under ₦500k', '₦500k – ₦1.5m', '₦1.5m – ₦3m', '₦3m+', 'No idea yet'] as const;
 
 const schema = z.object({
@@ -20,7 +19,6 @@ const schema = z.object({
   email: z.string().min(1, 'An email address, please.').email('That email looks off.'),
   projectType: z.enum(PROJECT_TYPES),
   budget: z.enum(BUDGETS),
-  delivery: z.enum(DELIVERY_OPTIONS),
   message: z.string().min(20, 'Give me a sentence or two — 20 characters minimum.'),
   company: z.string().max(0).optional(),
 });
@@ -67,7 +65,6 @@ export function Contact() {
       email: '',
       projectType: 'Website',
       budget: 'No idea yet',
-      delivery: 'WhatsApp',
       message: '',
       company: '',
     },
@@ -90,16 +87,10 @@ export function Contact() {
   };
 
   const onSubmit = async (values: FormValues) => {
-    const subject = `Project enquiry — ${values.projectType} (${values.name})`;
     const message = `Hi Jesse,\n\nMy name is ${values.name}.\nEmail: ${values.email}\nProject: ${values.projectType}\nBudget: ${values.budget}\n\n${values.message}`;
     const body = encodeURIComponent(message);
-    if (values.delivery === 'WhatsApp') {
-      window.open(`${site.whatsapp.href}?text=${body}`, '_blank', 'noopener,noreferrer');
-      setDeliveryNote('Opening WhatsApp with your message ready to send.');
-    } else {
-      window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${body}`;
-      setDeliveryNote('Opening your mail app with the message filled in.');
-    }
+    window.open(`${site.whatsapp.href}?text=${body}`, '_blank', 'noopener,noreferrer');
+    setDeliveryNote('Opening WhatsApp with your message ready to send.');
     setStatus('success');
     reset();
   };
@@ -239,18 +230,6 @@ export function Contact() {
                       ))}
                     </select>
                   </div>
-
-                  <fieldset className="sm:col-span-2">
-                    <legend className="label mb-2 block">Draft message in</legend>
-                    <div className="flex flex-wrap gap-3">
-                      {DELIVERY_OPTIONS.map((option) => (
-                        <label key={option} className="flex cursor-pointer items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-ink/80">
-                          <input type="radio" value={option} className="accent-[rgb(var(--accent))]" {...register('delivery')} />
-                          {option}
-                        </label>
-                      ))}
-                    </div>
-                  </fieldset>
 
                   <div className="sm:col-span-2">
                     <label htmlFor="message" className="label mb-1 block">
