@@ -87,34 +87,10 @@ export function Contact() {
   };
 
   const onSubmit = async (values: FormValues) => {
-    setStatus('sending');
-    const formId = import.meta.env.VITE_FORMSPREE_FORM_ID;
-
-    if (formId) {
-      try {
-        const response = await fetch(`https://formspree.io/f/${formId}`, {
-          method: 'POST',
-          headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...values, _subject: `New project — ${values.name}` }),
-        });
-        if (!response.ok) throw new Error('Formspree rejected the submission');
-        setDeliveryNote(null);
-        setStatus('success');
-        reset();
-        return;
-      } catch {
-        setStatus('error');
-        setDeliveryNote('The form endpoint did not answer. Use email or WhatsApp below.');
-        return;
-      }
-    }
-
-    const subject = encodeURIComponent(`Project enquiry — ${values.projectType} (${values.name})`);
-    const body = encodeURIComponent(
-      `Name: ${values.name}\nEmail: ${values.email}\nProject: ${values.projectType}\nBudget: ${values.budget}\n\n${values.message}`,
-    );
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
-    setDeliveryNote('Opening your mail app with the message filled in. If nothing happens, copy the address.');
+    const message = `Hi Jesse,\n\nMy name is ${values.name}.\nEmail: ${values.email}\nProject: ${values.projectType}\nBudget: ${values.budget}\n\n${values.message}`;
+    const body = encodeURIComponent(message);
+    window.open(`${site.whatsapp.href}?text=${body}`, '_blank', 'noopener,noreferrer');
+    setDeliveryNote('Opening WhatsApp with your message ready to send.');
     setStatus('success');
     reset();
   };
