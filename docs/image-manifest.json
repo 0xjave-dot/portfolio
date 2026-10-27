@@ -40,37 +40,37 @@
       "hero": {
         "width": 1440,
         "height": 900,
-        "bytes": 59430
+        "bytes": 59420
       },
       "full": {
         "width": 1200,
         "height": 4571,
-        "bytes": 323158
+        "bytes": 313654
       },
       "mobile": {
         "width": 780,
         "height": 1688,
-        "bytes": 67816
+        "bytes": 68222
       },
       "product": {
         "width": 1200,
         "height": 750,
-        "bytes": 96348
+        "bytes": 73754
       },
       "products": {
         "width": 1200,
         "height": 750,
-        "bytes": 80100
+        "bytes": 75196
       },
       "quote": {
         "width": 1200,
         "height": 750,
-        "bytes": 59188
+        "bytes": 59254
       },
       "shipping": {
         "width": 1200,
         "height": 750,
-        "bytes": 45042
+        "bytes": 45098
       }
     },
     "probe": {
