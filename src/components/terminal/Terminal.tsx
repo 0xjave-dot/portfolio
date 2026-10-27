@@ -21,8 +21,8 @@ const BANNER = [
 
 const HELP: Array<[string, string]> = [
   ['help', 'List commands'],
-  ['work', 'List the five live projects'],
-  ['open <slug>', 'Open a case study (gic, zanori, apreeltree, fitables, dudja)'],
+  ['work', 'List the live projects'],
+  ['open <slug>', 'Open a case study (gic, zanori, apreeltree, fitables, dudja, indrive)'],
   ['contact', 'Email, phone, WhatsApp'],
   ['socials', 'GitHub and the rest'],
   ['theme', 'Toggle light / dark'],
