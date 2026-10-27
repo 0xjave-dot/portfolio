@@ -22,7 +22,7 @@ const ROOT = path.resolve(__dirname, '..');
 const SOURCE = process.env.SOURCE || path.resolve(ROOT, '../recon/shots/out');
 const OUT = path.resolve(ROOT, 'public/projects');
 
-const SLUGS = ['gic', 'zanori', 'apreeltree', 'fitables', 'dudja'];
+const SLUGS = ['gic', 'zanori', 'apreeltree', 'fitables', 'dudja', 'indrive'];
 
 /** Width budgets per well-known capture name. Anything else is a gallery shot. */
 const WIDTHS = { hero: 1440, full: 1200, mobile: 780 };

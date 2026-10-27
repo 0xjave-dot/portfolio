@@ -195,7 +195,7 @@ function WorkStack() {
 /**
  * Selected work.
  *
- * The section pins at every screen size and five project panels travel
+ * The section pins at every screen size and the project panels travel
  * horizontally, scrubbed by vertical scroll position (GSAP + ScrollTrigger on
  * Lenis' ticker).
  *
