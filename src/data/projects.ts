@@ -107,7 +107,7 @@ export const projects: Project[] = [
     ],
     liveUrl: 'https://kingdom-comms-landing.onrender.com/',
     summary:
-      'A church management platform for sharing information with members without SMS costs, planning events and managing church population.',
+      'A church management platform for planning events and managing church population., and sharing information with members without SMS costs.',
     note: 'Church updates, sent straight to members’ phones.',
     stamp: 'In production',
     standfirst:

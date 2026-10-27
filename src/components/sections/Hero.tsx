@@ -217,7 +217,7 @@ export function Hero() {
               animate={firstVisit || reduced ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: EASE, delay: 0.6 }}
             >
-              I design and ship products
+              
             </motion.p>
 
             <motion.div
