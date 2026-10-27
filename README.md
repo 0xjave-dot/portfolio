@@ -37,7 +37,7 @@ Everything on the page is editable from `src/data/*` — no component edits need
 
 | # | Project | What it is | Live |
 |---|---------|------------|------|
-| 01 | Kingdom Comms | Church communications platform for Global Impact Church — member PWA, admin panel, targeting engine | [gic-admin-static.onrender.com](https://gic-admin-static.onrender.com/) |
+| 01 | Kingdom Comms | Church communications platform for Global Impact Church — member PWA, admin panel, targeting engine | [kingdom-comms-landing.onrender.com](https://kingdom-comms-landing.onrender.com/) |
 | 02 | Zanori Spaces | Interior & exterior design gallery, custom domain | [zanorispaces.com](https://zanorispaces.com/) |
 | 03 | Apreeltree | Premium Nigerian food bulk export, B2B catalogue | [apreeltree.onrender.com](https://apreeltree.onrender.com/) |
 | 04 | Fitables Beauty Bar | Luxury spa booking across three Lagos locations | [fitables.onrender.com](https://fitables.onrender.com/) |

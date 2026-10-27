@@ -167,17 +167,17 @@
       "hero": {
         "width": 1440,
         "height": 900,
-        "bytes": 43804
+        "bytes": 48952
       },
       "full": {
-        "width": 1200,
-        "height": 881,
-        "bytes": 44720
+        "width": 1076,
+        "height": 11000,
+        "bytes": 611334
       },
       "mobile": {
-        "width": 750,
-        "height": 1966,
-        "bytes": 83010
+        "width": 780,
+        "height": 1688,
+        "bytes": 68050
       },
       "admin-members": {
         "width": 1200,
@@ -203,13 +203,25 @@
         "width": 780,
         "height": 1688,
         "bytes": 64272
+      },
+      "admin-composer": {
+        "width": 1440,
+        "height": 900
+      },
+      "admin-units": {
+        "width": 1200,
+        "height": 881
+      },
+      "member-home": {
+        "width": 750,
+        "height": 1966
       }
     },
     "probe": {
       "surface": "#ffffff",
-      "accent": "#fffefe",
-      "page": "#f3f4f8",
-      "ink": "#4b4f60",
+      "accent": "#ffffff",
+      "page": "#ffffff",
+      "ink": "#ffffff",
       "_src": "1440x900"
     }
   },
