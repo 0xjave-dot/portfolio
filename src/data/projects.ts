@@ -89,8 +89,8 @@ export const projects: Project[] = [
   {
     slug: 'gic',
     index: '01',
-    name: 'inDrive Open API Nigeria',
-    shortName: 'inDrive API',
+    name: 'Kingdom Comms',
+    shortName: 'Kingdom Comms',
     category: 'Church communications platform',
     year: '2026',
     client: 'Global Impact Church (GIC) — Lagos, Abuja & diaspora',
@@ -287,8 +287,8 @@ export const projects: Project[] = [
   {
     slug: 'indrive',
     index: '02',
-    name: 'Kingdom Comms',
-    shortName: 'Kingdom Comms',
+    name: 'inDrive Open API Nigeria',
+    shortName: 'inDrive API',
     category: 'Developer API concept',
     year: '2026',
     client: 'Self-initiated concept — not an inDrive product, not affiliated with inDrive',
