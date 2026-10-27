@@ -16,6 +16,17 @@ export interface ProjectImage {
   caption?: string;
 }
 
+/** A recorded browsing session of the live project (WebM + MP4, with a WebP poster). */
+export interface ProjectVideo {
+  webm: string;
+  mp4: string;
+  poster: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption?: string;
+}
+
 export interface ProjectFact {
   label: string;
   value: string;
@@ -57,6 +68,11 @@ export interface Project {
    * in the lightbox. Observed from the live site during recon.
    */
   gallery: ProjectImage[];
+  /**
+   * Recorded sessions of the project in use. The first is the desktop session
+   * shown in the case-study hero and on the homepage panel.
+   */
+  sessions: ProjectVideo[];
   /** What was actually handed over at the end. */
   deliverables: string[];
   /** Technical detail observed on the live deployment. */
@@ -71,8 +87,128 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'gic',
+    slug: 'indrive',
     index: '01',
+    name: 'inDrive Open API Nigeria',
+    shortName: 'inDrive API',
+    category: 'Developer API concept',
+    year: '2026',
+    client: 'Self-initiated concept — not an inDrive product, not affiliated with inDrive',
+    role: ['API design', 'Backend build', 'Developer portal', 'Product design'],
+    stack: ['Python', 'Flask', 'PostgreSQL', 'SQLAlchemy', 'Alembic', 'Redis', 'OpenAPI 3.1', 'Motion'],
+    liveUrl: 'https://indrive-open-api-nigeria.onrender.com/',
+    summary:
+      'A concept public API that lets Nigerian businesses build inDrive-style negotiated rides and parcel deliveries into their own apps.',
+    note: 'What an inDrive API for Nigerian developers could look like.',
+    stamp: 'Concept',
+    standfirst:
+      'Every ride API quotes a price. inDrive’s whole idea is that the price is negotiated — so the API had to carry the negotiation, not flatten it.',
+    theme: { bg: '#FFFEF4', fg: '#2F3C45', accent: '#56BC37' },
+    images: {
+      hero: {
+        src: '/projects/indrive/hero.webp',
+        width: 1440,
+        height: 900,
+        alt: 'inDrive Open API Nigeria homepage: “Fair rides, built into your app.” beside a phone where a hotel’s guest-transport screen shows three drivers responding to a ₦14,000 offer, with the API call behind the step',
+      },
+      full: {
+        src: '/projects/indrive/full.webp',
+        width: 1200,
+        height: 8319,
+        alt: 'Full-page view of the inDrive Open API Nigeria developer portal',
+      },
+      mobile: {
+        src: '/projects/indrive/mobile.webp',
+        width: 780,
+        height: 1688,
+        alt: 'The inDrive Open API Nigeria portal on a phone, under the concept-project banner',
+      },
+    },
+    gallery: [
+      {
+        src: '/projects/indrive/quickstart.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Quickstart page: “A first ride in five calls”, with curl, JavaScript and Python tabs pointed at the live deployment',
+        caption: 'Quickstart — a first ride in five calls, in three languages',
+      },
+      {
+        src: '/projects/indrive/reference.webp',
+        width: 1200,
+        height: 750,
+        alt: 'API reference, Rides section: ten operations from ride estimates to lifecycle status, rendered from the OpenAPI document',
+        caption: 'API reference — drawn by the product from its own OpenAPI document',
+      },
+      {
+        src: '/projects/indrive/webhooks.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Webhooks page: “Hear about a ride as it happens”, explaining signed, ordered, retried event delivery',
+        caption: 'Webhooks — signed, ordered per ride, retried until accepted',
+      },
+      {
+        src: '/projects/indrive/keys.webp',
+        width: 1200,
+        height: 750,
+        alt: 'Sandbox key page: a self-serve form that issues a 30-day key once the developer confirms it is a concept',
+        caption: 'Sandbox keys — no account, issued in one step',
+      },
+    ],
+    sessions: [
+      {
+        webm: '/projects/indrive/session.webm',
+        mp4: '/projects/indrive/session.mp4',
+        poster: '/projects/indrive/session.webp',
+        width: 1440,
+        height: 900,
+        alt: 'A recorded session on the live inDrive Open API Nigeria site, scrolling from the hero through the page',
+        caption: 'inDrive Open API Nigeria — live site, desktop session',
+      },
+    ],
+    deliverables: [
+      'A REST API under /api/ride-ops/v1 — 31 operations for rides, deliveries, guests, events, webhooks and the simulation',
+      'A developer portal with a quickstart, self-serve sandbox keys, a webhooks guide and an API reference',
+      'An operations console over the same public API, plus a browser-based driver location tool',
+      'Signed webhooks with 40 event types, per-ride ordering and exponential-backoff retries',
+      'A deterministic dispatch simulation whose pace can be changed at runtime',
+      'A one-service Render deployment on free Neon Postgres and Upstash Redis',
+    ],
+    tech: [
+      { label: 'Backend', value: 'Python · Flask · SQLAlchemy · gunicorn' },
+      { label: 'Data', value: 'PostgreSQL · 13 Alembic migrations · Redis' },
+      { label: 'Contract', value: 'OpenAPI 3.1, checked against the app by the test suite' },
+      { label: 'Webhooks', value: 'HMAC-SHA256 signatures · backoff with jitter' },
+      { label: 'Deploy', value: 'Render web service · Neon · Upstash' },
+      { label: 'Tests', value: '185, in pytest' },
+    ],
+    overview:
+      'A self-initiated concept: what would a public inDrive API for Nigerian developers look like? This is a working answer — a developer portal, a REST API, signed webhooks and an operations console, so a hotel, an online store or a logistics startup could build inDrive rides and parcel deliveries into its own product. It is not an inDrive product and nothing in it talks to inDrive: every driver, courier and price comes from a local simulation, and the product says so on every page, in every HTTP response and in the API document itself.',
+    challenge:
+      'A fixed-price ride API is easy to imagine: quote, book, done. inDrive works differently — the platform publishes a recommended minimum, the requester offers a price, and drivers accept, counter or decline. Modelling that honestly means a counter-offer is its own priced record from a distinct driver, the refused prices stay auditable next to the agreed one, and the fare can only move while the offer is open. On top of that it had to feel like a real platform API — idempotency keys, ETags, cursor pagination, a consistent error envelope — and fit Nigeria: naira in kobo, Lagos time, local phone formats. And because it borrows inDrive’s visual language as the pitch, it had to be impossible to mistake for the real thing.',
+    built: [
+      'A negotiated fare model: one recommended minimum, an offer from the requester, and counter-offers stored as first-class ride_offers rows, so the requester always sees the alternatives.',
+      'A deterministic simulation that walks a ride from SEARCHING to COMPLETED — the same ride always produces the same responses, so scenarios and tests are reproducible — with timings an operator can slow down or speed up from the console.',
+      'Parcel deliveries in the same peer-to-peer shape: up to three addresses with one courier, chosen by the sender on price, rating and arrival time, and tracked through every handoff.',
+      'Platform conventions throughout: an idempotency key on every mutation, ETags with If-Match and 412 on a stale version, cursor pagination and a meta error envelope.',
+      'Signed webhooks over 40 event types — HMAC-SHA256 over the timestamp and raw body, delivered in order per ride, retried with exponential backoff and bounded jitter.',
+      'A checked-in OpenAPI 3.1 document that the test suite verifies against every route and every error code, and an API reference the product renders from it with no third-party renderer.',
+      'A developer portal in inDrive’s design language — a hero where a made-up hotel books an airport pickup step by step beside the API call behind each step — animated with Motion and fully readable without it.',
+      'Built for Nigeria: prices as integers in kobo, Africa/Lagos time, Nigerian numbers accepted in local or international form and normalised to +234.',
+    ],
+    facts: [
+      { label: 'Surfaces', value: 'Portal · API · Console · Driver tool' },
+      { label: 'API', value: '31 operations · OpenAPI 3.1' },
+      { label: 'Webhook events', value: '40' },
+      { label: 'Fare model', value: 'Offer, counter, choose' },
+      { label: 'Deliveries', value: 'Up to 3 stops, one courier' },
+      { label: 'Tests', value: '185' },
+    ],
+    resultsNote:
+      'This is a personal concept, not a shipped inDrive product, so there are no users, rides or revenue to report. The live deployment is a sandbox: anyone can issue a key and book a simulated ride, and every driver and price on it is generated by the simulation.',
+  },
+  {
+    slug: 'gic',
+    index: '02',
     name: 'Kingdom Comms',
     shortName: 'Kingdom Comms',
     category: 'Church communications platform',
@@ -168,6 +304,62 @@ export const projects: Project[] = [
         caption: 'Member app — upcoming services and events',
       },
     ],
+    sessions: [
+      {
+        webm: '/projects/gic/session.webm',
+        mp4: '/projects/gic/session.mp4',
+        poster: '/projects/gic/session.webp',
+        width: 1440,
+        height: 900,
+        alt: 'A recorded session on the live Kingdom Comms landing page site, scrolling from the hero through the page',
+        caption: 'Kingdom Comms landing page — live site, desktop session',
+      },
+      {
+        webm: '/projects/gic/admin-dashboard.webm',
+        mp4: '/projects/gic/admin-dashboard.mp4',
+        poster: '/projects/gic/admin-dashboard.webp',
+        width: 1600,
+        height: 1000,
+        alt: 'The Kingdom Comms admin dashboard filling in: member, event and message totals, the service attendance chart and the latest check-in',
+        caption: 'Admin — the dashboard loading live data',
+      },
+      {
+        webm: '/projects/gic/member-app.webm',
+        mp4: '/projects/gic/member-app.mp4',
+        poster: '/projects/gic/member-app.webp',
+        width: 780,
+        height: 1688,
+        alt: 'The member app on a phone: the home screen with the latest sermon, opening the Youth Fellowship Retreat event, then browsing units',
+        caption: 'Member app — home, an event, units',
+      },
+      {
+        webm: '/projects/gic/admin-announcements.webm',
+        mp4: '/projects/gic/admin-announcements.mp4',
+        poster: '/projects/gic/admin-announcements.webp',
+        width: 1200,
+        height: 950,
+        alt: 'Writing an announcement to the Choir in the composer, with the phone preview updating as it is typed',
+        caption: 'Admin — writing an announcement, previewed live',
+      },
+      {
+        webm: '/projects/gic/admin-events.webm',
+        mp4: '/projects/gic/admin-events.mp4',
+        poster: '/projects/gic/admin-events.webp',
+        width: 1200,
+        height: 936,
+        alt: 'Setting up an event in the admin: title, venue and a church bus pickup with its time',
+        caption: 'Admin — setting up an event with a bus pickup',
+      },
+      {
+        webm: '/projects/gic/admin-attendance.webm',
+        mp4: '/projects/gic/admin-attendance.mp4',
+        poster: '/projects/gic/admin-attendance.webp',
+        width: 1200,
+        height: 616,
+        alt: 'Switching between Sundays in the attendance report',
+        caption: 'Admin — attendance, Sunday by Sunday',
+      },
+    ],
     deliverables: [
       'A member PWA — offline app shell, push notifications, service times and sermon playback',
       'An admin panel covering members, attendance, units, segments, events, campaigns and an activity log',
@@ -214,7 +406,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'zanori',
-    index: '02',
+    index: '03',
     name: 'Zanori Spaces',
     shortName: 'Zanori',
     category: 'Interior design gallery',
@@ -272,6 +464,17 @@ export const projects: Project[] = [
         caption: 'Shop — furniture and design pieces',
       },
     ],
+    sessions: [
+      {
+        webm: '/projects/zanori/session.webm',
+        mp4: '/projects/zanori/session.mp4',
+        poster: '/projects/zanori/session.webp',
+        width: 1440,
+        height: 900,
+        alt: 'A recorded session on the live Zanori Spaces site, scrolling from the hero through the page',
+        caption: 'Zanori Spaces — live site, desktop session',
+      },
+    ],
     deliverables: [
       'Brand identity — wordmark, type and colour system, favicon that reads at 16px',
       'A gallery-first homepage built around a full-bleed image hero',
@@ -310,7 +513,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'apreeltree',
-    index: '03',
+    index: '04',
     name: 'Apreeltree',
     shortName: 'Apreeltree',
     category: 'B2B export platform',
@@ -375,6 +578,17 @@ export const projects: Project[] = [
         caption: 'Quote request — the one conversion that matters',
       },
     ],
+    sessions: [
+      {
+        webm: '/projects/apreeltree/session.webm',
+        mp4: '/projects/apreeltree/session.mp4',
+        poster: '/projects/apreeltree/session.webp',
+        width: 1440,
+        height: 900,
+        alt: 'A recorded session on the live Apreeltree site, scrolling from the hero through the page',
+        caption: 'Apreeltree — live site, desktop session',
+      },
+    ],
     deliverables: [
       'Trust-first storefront with the proof placed directly under the headline',
       'A 17-product catalogue grouped by category, with grades and starting prices',
@@ -413,7 +627,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'fitables',
-    index: '04',
+    index: '05',
     name: 'Fitables Beauty Bar',
     shortName: 'Fitables',
     category: 'Spa booking platform',
@@ -472,6 +686,17 @@ export const projects: Project[] = [
         caption: 'Three branches, three sets of hours',
       },
     ],
+    sessions: [
+      {
+        webm: '/projects/fitables/session.webm',
+        mp4: '/projects/fitables/session.mp4',
+        poster: '/projects/fitables/session.webp',
+        width: 1440,
+        height: 900,
+        alt: 'A recorded session on the live Fitables Beauty Bar site, scrolling from the hero through the page',
+        caption: 'Fitables Beauty Bar — live site, desktop session',
+      },
+    ],
     deliverables: [
       'Ivory and deep-green identity with Cormorant Garamond display type',
       'A searchable treatment menu with prices, durations and categories',
@@ -510,7 +735,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'dudja',
-    index: '05',
+    index: '06',
     name: 'DUDJA',
     shortName: 'DUDJA',
     category: 'Artist brand site',
@@ -576,6 +801,17 @@ export const projects: Project[] = [
         caption: 'Booking — a real inquiry form, not a mailto link',
       },
     ],
+    sessions: [
+      {
+        webm: '/projects/dudja/session.webm',
+        mp4: '/projects/dudja/session.mp4',
+        poster: '/projects/dudja/session.webp',
+        width: 1440,
+        height: 900,
+        alt: 'A recorded session on the live DUDJA site, scrolling from the hero through the page',
+        caption: 'DUDJA — live site, desktop session',
+      },
+    ],
     deliverables: [
       'Record-sleeve art direction — bone and vermilion on near-black',
       'A discography with live Spotify and SoundCloud embeds',
@@ -610,115 +846,6 @@ export const projects: Project[] = [
       { label: 'Artist base', value: 'Boston, MA' },
     ],
     resultsNote: 'Streaming numbers and sales were out of scope at recon time — nothing is claimed here.',
-  },
-  {
-    slug: 'indrive',
-    index: '06',
-    name: 'inDrive Open API Nigeria',
-    shortName: 'inDrive API',
-    category: 'Developer API concept',
-    year: '2026',
-    client: 'Self-initiated concept — not an inDrive product, not affiliated with inDrive',
-    role: ['API design', 'Backend build', 'Developer portal', 'Product design'],
-    stack: ['Python', 'Flask', 'PostgreSQL', 'SQLAlchemy', 'Alembic', 'Redis', 'OpenAPI 3.1', 'Motion'],
-    liveUrl: 'https://indrive-open-api-nigeria.onrender.com/',
-    summary:
-      'A concept public API that lets Nigerian businesses build inDrive-style negotiated rides and parcel deliveries into their own apps.',
-    note: 'What an inDrive API for Nigerian developers could look like.',
-    stamp: 'Concept',
-    standfirst:
-      'Every ride API quotes a price. inDrive’s whole idea is that the price is negotiated — so the API had to carry the negotiation, not flatten it.',
-    theme: { bg: '#FFFEF4', fg: '#2F3C45', accent: '#56BC37' },
-    images: {
-      hero: {
-        src: '/projects/indrive/hero.webp',
-        width: 1440,
-        height: 900,
-        alt: 'inDrive Open API Nigeria homepage: “Fair rides, built into your app.” beside a phone where a hotel’s guest-transport screen shows three drivers responding to a ₦14,000 offer, with the API call behind the step',
-      },
-      full: {
-        src: '/projects/indrive/full.webp',
-        width: 1200,
-        height: 8319,
-        alt: 'Full-page view of the inDrive Open API Nigeria developer portal',
-      },
-      mobile: {
-        src: '/projects/indrive/mobile.webp',
-        width: 780,
-        height: 1688,
-        alt: 'The inDrive Open API Nigeria portal on a phone, under the concept-project banner',
-      },
-    },
-    gallery: [
-      {
-        src: '/projects/indrive/quickstart.webp',
-        width: 1200,
-        height: 750,
-        alt: 'Quickstart page: “A first ride in five calls”, with curl, JavaScript and Python tabs pointed at the live deployment',
-        caption: 'Quickstart — a first ride in five calls, in three languages',
-      },
-      {
-        src: '/projects/indrive/reference.webp',
-        width: 1200,
-        height: 750,
-        alt: 'API reference, Rides section: ten operations from ride estimates to lifecycle status, rendered from the OpenAPI document',
-        caption: 'API reference — drawn by the product from its own OpenAPI document',
-      },
-      {
-        src: '/projects/indrive/webhooks.webp',
-        width: 1200,
-        height: 750,
-        alt: 'Webhooks page: “Hear about a ride as it happens”, explaining signed, ordered, retried event delivery',
-        caption: 'Webhooks — signed, ordered per ride, retried until accepted',
-      },
-      {
-        src: '/projects/indrive/keys.webp',
-        width: 1200,
-        height: 750,
-        alt: 'Sandbox key page: a self-serve form that issues a 30-day key once the developer confirms it is a concept',
-        caption: 'Sandbox keys — no account, issued in one step',
-      },
-    ],
-    deliverables: [
-      'A REST API under /api/ride-ops/v1 — 31 operations for rides, deliveries, guests, events, webhooks and the simulation',
-      'A developer portal with a quickstart, self-serve sandbox keys, a webhooks guide and an API reference',
-      'An operations console over the same public API, plus a browser-based driver location tool',
-      'Signed webhooks with 40 event types, per-ride ordering and exponential-backoff retries',
-      'A deterministic dispatch simulation whose pace can be changed at runtime',
-      'A one-service Render deployment on free Neon Postgres and Upstash Redis',
-    ],
-    tech: [
-      { label: 'Backend', value: 'Python · Flask · SQLAlchemy · gunicorn' },
-      { label: 'Data', value: 'PostgreSQL · 13 Alembic migrations · Redis' },
-      { label: 'Contract', value: 'OpenAPI 3.1, checked against the app by the test suite' },
-      { label: 'Webhooks', value: 'HMAC-SHA256 signatures · backoff with jitter' },
-      { label: 'Deploy', value: 'Render web service · Neon · Upstash' },
-      { label: 'Tests', value: '185, in pytest' },
-    ],
-    overview:
-      'A self-initiated concept: what would a public inDrive API for Nigerian developers look like? This is a working answer — a developer portal, a REST API, signed webhooks and an operations console, so a hotel, an online store or a logistics startup could build inDrive rides and parcel deliveries into its own product. It is not an inDrive product and nothing in it talks to inDrive: every driver, courier and price comes from a local simulation, and the product says so on every page, in every HTTP response and in the API document itself.',
-    challenge:
-      'A fixed-price ride API is easy to imagine: quote, book, done. inDrive works differently — the platform publishes a recommended minimum, the requester offers a price, and drivers accept, counter or decline. Modelling that honestly means a counter-offer is its own priced record from a distinct driver, the refused prices stay auditable next to the agreed one, and the fare can only move while the offer is open. On top of that it had to feel like a real platform API — idempotency keys, ETags, cursor pagination, a consistent error envelope — and fit Nigeria: naira in kobo, Lagos time, local phone formats. And because it borrows inDrive’s visual language as the pitch, it had to be impossible to mistake for the real thing.',
-    built: [
-      'A negotiated fare model: one recommended minimum, an offer from the requester, and counter-offers stored as first-class ride_offers rows, so the requester always sees the alternatives.',
-      'A deterministic simulation that walks a ride from SEARCHING to COMPLETED — the same ride always produces the same responses, so scenarios and tests are reproducible — with timings an operator can slow down or speed up from the console.',
-      'Parcel deliveries in the same peer-to-peer shape: up to three addresses with one courier, chosen by the sender on price, rating and arrival time, and tracked through every handoff.',
-      'Platform conventions throughout: an idempotency key on every mutation, ETags with If-Match and 412 on a stale version, cursor pagination and a meta error envelope.',
-      'Signed webhooks over 40 event types — HMAC-SHA256 over the timestamp and raw body, delivered in order per ride, retried with exponential backoff and bounded jitter.',
-      'A checked-in OpenAPI 3.1 document that the test suite verifies against every route and every error code, and an API reference the product renders from it with no third-party renderer.',
-      'A developer portal in inDrive’s design language — a hero where a made-up hotel books an airport pickup step by step beside the API call behind each step — animated with Motion and fully readable without it.',
-      'Built for Nigeria: prices as integers in kobo, Africa/Lagos time, Nigerian numbers accepted in local or international form and normalised to +234.',
-    ],
-    facts: [
-      { label: 'Surfaces', value: 'Portal · API · Console · Driver tool' },
-      { label: 'API', value: '31 operations · OpenAPI 3.1' },
-      { label: 'Webhook events', value: '40' },
-      { label: 'Fare model', value: 'Offer, counter, choose' },
-      { label: 'Deliveries', value: 'Up to 3 stops, one courier' },
-      { label: 'Tests', value: '185' },
-    ],
-    resultsNote:
-      'This is a personal concept, not a shipped inDrive product, so there are no users, rides or revenue to report. The live deployment is a sandbox: anyone can issue a key and book a simulated ride, and every driver and price on it is generated by the simulation.',
   },
 ];
 

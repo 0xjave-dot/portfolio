@@ -81,8 +81,8 @@ export function SideQuests() {
               lines={['Things that', 'aren’t websites.']}
             />
             <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/60 sm:text-base">
-              Not everything has an invoice attached. A Telegram bot with a bad attitude, games for
-              friends, scripts that watch markets, and automation experiments. Same brain, less polish.
+              I have the ability to have fun too. A Telegram bot with a bad attitude, games for
+              friends, scripts that watch markets, and automation experiments. 
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Stamp className="text-stamp">FOR THE LOVE OF THE GAME</Stamp>

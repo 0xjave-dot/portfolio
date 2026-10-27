@@ -4,6 +4,7 @@ import type { Project } from '@/data/projects';
 import { projects } from '@/data/projects';
 import { useLenis } from '@/hooks/useLenis';
 import { cn, pad } from '@/lib/utils';
+import { SessionVideo } from '@/components/ui/SessionVideo';
 
 function BrowserFrame({ project, className }: { project: Project; className?: string }) {
   const host = project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -59,18 +60,7 @@ function BrowserFrame({ project, className }: { project: Project; className?: st
         ref={frameRef}
         className="project-capture-viewport relative aspect-[16/10] overflow-hidden bg-surface"
       >
-        <img
-          src={project.images.full.src}
-          alt={project.images.full.alt}
-          width={project.images.full.width}
-          height={project.images.full.height}
-          loading="lazy"
-          decoding="async"
-          className={cn(
-            'project-capture-image block w-full grayscale-[20%] transition-[filter] duration-700 group-hover/frame:grayscale-0',
-            isInView && 'project-capture-image-active',
-          )}
-        />
+        {isInView ? <SessionVideo video={project.sessions[0]!} className="h-full object-cover object-top" /> : null}
       </div>
     </Link>
   );

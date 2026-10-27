@@ -10,6 +10,7 @@ import type { LightboxImage } from '@/components/ui/Lightbox';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Parallax } from '@/components/motion/Parallax';
 import { Reveal } from '@/components/ui/Reveal';
+import { SessionVideo } from '@/components/ui/SessionVideo';
 import { site } from '@/data/site';
 import { cn } from '@/lib/utils';
 import NotFound from './NotFound';
@@ -197,14 +198,9 @@ function CaseStudyView({ project }: { project: Project }) {
 
           <div className="mt-12 lg:mt-16">
             <Parallax distance={reduced ? 0 : 34} outerClassName="rounded-[3px]">
-              <img
-                src={project.images.hero.src}
-                alt={project.images.hero.alt}
-                width={project.images.hero.width}
-                height={project.images.hero.height}
-                className="w-full rounded-[3px] shadow-[0_50px_120px_-40px_rgba(0,0,0,0.65)]"
-                decoding="async"
-              />
+              <div className="overflow-hidden rounded-[3px] shadow-[0_50px_120px_-40px_rgba(0,0,0,0.65)]">
+                <SessionVideo video={project.sessions[0]!} priority />
+              </div>
             </Parallax>
           </div>
         </div>
@@ -328,47 +324,30 @@ function CaseStudyView({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* gallery */}
+      {/* recorded sessions */}
       <div className="shell border-t border-line/10 py-16 lg:py-20">
         <div className="flex items-baseline justify-between gap-4">
-          <SectionTitle index="07">Screens</SectionTitle>
+          <SectionTitle index="07">Sessions</SectionTitle>
           <span className="label hidden sm:block">
-            {gallery.length} capture · click to enlarge
+            {project.sessions.length} {project.sessions.length === 1 ? 'recording' : 'recordings'} · plays in view
           </span>
         </div>
-        <div className="mt-8 grid grid-cols-12 gap-5">
-          {gallery.map((image, index) => (
-            <button
-              key={image.src}
-              type="button"
-              onClick={() => setLightbox(index)}
+        <div className="mt-8 grid grid-cols-12 items-start gap-5">
+          {project.sessions.map((video, index) => (
+            <figure
+              key={video.mp4}
               className={cn(
-                'group overflow-hidden border border-line/15 bg-surface text-left',
-                index === 0 ? 'col-span-12 lg:col-span-8' : 'col-span-6 lg:col-span-4',
+                'overflow-hidden border border-line/15 bg-surface',
+                index === 0 ? 'col-span-12' : video.height > video.width ? 'col-span-6 lg:col-span-4' : 'col-span-12 lg:col-span-8',
               )}
-              data-cursor="Open"
-              aria-label={`Open ${image.alt}`}
             >
-              <div className={cn('overflow-hidden', index === 0 && 'max-h-[34rem]')}>
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  loading="lazy"
-                  decoding="async"
-                  className={cn(
-                    'w-full transition-transform duration-[900ms] ease-edge group-hover:scale-[1.02]',
-                    index === 0 && 'object-cover object-top',
-                  )}
-                />
-              </div>
-              {image.caption ? (
-                <span className="block border-t border-line/10 px-4 py-2.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-muted">
-                  {image.caption}
-                </span>
+              <SessionVideo video={video} />
+              {video.caption ? (
+                <figcaption className="border-t border-line/10 px-4 py-2.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-muted">
+                  {video.caption}
+                </figcaption>
               ) : null}
-            </button>
+            </figure>
           ))}
         </div>
       </div>
