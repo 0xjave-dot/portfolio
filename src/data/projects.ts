@@ -294,7 +294,7 @@ export const projects: Project[] = [
     client: 'Self-initiated concept — not an inDrive product, not affiliated with inDrive',
     role: ['API design', 'Backend build', 'Developer portal', 'Product design'],
     stack: ['Python', 'Flask', 'PostgreSQL', 'SQLAlchemy', 'Alembic', 'Redis', 'OpenAPI 3.1', 'Motion'],
-    liveUrl: 'https://indrive-open-api-nigeria.onrender.com/',
+    liveUrl: 'https://dev-portal-indrive.onrender.com/',
     summary:
       'A concept public API that lets Nigerian businesses build inDrive-style negotiated rides and parcel deliveries into their own apps.',
     note: 'What an inDrive API for Nigerian developers could look like.',
